@@ -6,4 +6,4 @@
 
 Práctica realizada siguiendo el guión:
 
-- [Práctica1-red social-Spring](docs/Práctica1-red social-Spring-v2.0-extra-adelantada)
+- [Práctica1 Red social Spring](docs/Práctica1-Guión.pdf)
