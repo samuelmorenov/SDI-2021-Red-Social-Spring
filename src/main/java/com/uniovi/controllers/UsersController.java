@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
@@ -75,7 +74,7 @@ public class UsersController {
 		}
 		user.setRole(rolesService.getRoles()[0]);
 		usersService.addUser(user);
-		securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
+		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		return "redirect:home";
 	}
 
@@ -121,9 +120,9 @@ public class UsersController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String dni = auth.getName();
 		User activeUser = usersService.getUserByDni(dni);
-		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
-		model.addAttribute("markList", activeUser.getMarks());
-		model.addAttribute("page", marks);
+//		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
+//		model.addAttribute("markList", activeUser.getMarks());
+//		model.addAttribute("page", marks);
 		return "home";
 	}
 

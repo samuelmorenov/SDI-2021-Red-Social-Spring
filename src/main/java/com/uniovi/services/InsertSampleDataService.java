@@ -1,15 +1,10 @@
 package com.uniovi.services;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uniovi.entities.Mark;
-import com.uniovi.entities.Professor;
 import com.uniovi.entities.User;
 
 // DONE: Para crear la base de datos de nuevo descomentar esta clase
@@ -18,8 +13,6 @@ public class InsertSampleDataService {
 	@Autowired
 	private UsersService usersService;
 	
-	@Autowired
-	private ProfessorsService professorsService;
 
 	@Autowired
 	private RolesService rolesService;
@@ -46,64 +39,6 @@ public class InsertSampleDataService {
 		user6.setRole(rolesService.getRoles()[2]);
 		
 
-			
-		
-
-		Set<Mark> user1Marks = new HashSet<Mark>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			{
-				add(new Mark("Nota A1", 10.0, user1));
-				add(new Mark("Nota A2", 9.0, user1));
-				add(new Mark("Nota A3", 7.0, user1));
-				add(new Mark("Nota A4", 6.5, user1));
-			}
-		};
-		user1.setMarks(user1Marks);
-		Set<Mark> user2Marks = new HashSet<Mark>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			{
-				add(new Mark("Nota B1", 5.0, user2));
-				add(new Mark("Nota B2", 4.3, user2));
-				add(new Mark("Nota B3", 8.0, user2));
-				add(new Mark("Nota B4", 3.5, user2));
-			}
-		};
-		user2.setMarks(user2Marks);
-		Set<Mark> user3Marks = new HashSet<Mark>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			{
-				;
-				add(new Mark("Nota C1", 5.5, user3));
-				add(new Mark("Nota C2", 6.6, user3));
-				add(new Mark("Nota C3", 7.0, user3));
-			}
-		};
-		user3.setMarks(user3Marks);
-		Set<Mark> user4Marks = new HashSet<Mark>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			{
-				add(new Mark("Nota D1", 10.0, user4));
-				add(new Mark("Nota D2", 8.0, user4));
-				add(new Mark("Nota D3", 9.0, user4));
-			}
-		};
-		user4.setMarks(user4Marks);
 		usersService.addUser(user1);
 		usersService.addUser(user2);
 		usersService.addUser(user3);
@@ -111,7 +46,6 @@ public class InsertSampleDataService {
 		usersService.addUser(user5);
 		usersService.addUser(user6);
 		
-		Professor profesor1 = new Professor((long) 1, "12345678A", "Antonio", "Morales", "Matematicas");
-		professorsService.addProfessor(profesor1);
+
 	}
 }

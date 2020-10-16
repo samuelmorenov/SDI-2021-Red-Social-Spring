@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		// DONE: Spring security llama a las propiedades de identificación: Username y
 		// password.
-		return new org.springframework.security.core.userdetails.User(user.getDni(), user.getPassword(),
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
 				grantedAuthorities);
 	}
 }

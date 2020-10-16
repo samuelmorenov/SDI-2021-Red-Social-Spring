@@ -1,7 +1,9 @@
 package com.uniovi.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
-import java.util.Set; //A collection that contains no duplicate elements
 
 @Entity
 public class User {
@@ -9,22 +11,28 @@ public class User {
 	@GeneratedValue
 	private long id;
 	@Column(unique = true)
-	private String dni;
+	private String email;
 	private String name;
 	private String lastName;
-	
+
 	private String role;
 
 	private String password;
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
+	
+	@OneToMany(mappedBy = "receptor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Invitation> recibidas;
+	
+	@OneToMany(mappedBy = "emisor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Invitation> emitidas;
+	
+	@ManyToMany()
+	private Set<User> amigos;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Mark> marks;
-
-	public User(String dni, String name, String lastName) {
+	public User(String email, String name, String lastName) {
 		super();
-		this.dni = dni;
+		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
 	}
@@ -40,12 +48,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getName() {
@@ -62,14 +70,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public void setMarks(Set<Mark> marks) {
-		this.marks = marks;
-	}
-
-	public Set<Mark> getMarks() {
-		return marks;
 	}
 
 	public String getFullName() {
@@ -99,5 +99,39 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	Set<Invitation> _getRecibidas() {
+		return recibidas;
+	}
+	
+	public Set<Invitation> getRecibidas() {
+		return new HashSet<Invitation>(recibidas);
+	}
+
+	public void setRecibidas(Set<Invitation> recibidas) {
+		this.recibidas = recibidas;
+	}
+
+	Set<Invitation> _getEmitidas() {
+		return emitidas;
+	}
+	
+	public Set<Invitation> getEmitidas() {
+		return new HashSet<Invitation>(emitidas);
+	}
+
+	public void setEmitidas(Set<Invitation> emitidas) {
+		this.emitidas = emitidas;
+	}
+
+	public Set<User> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(Set<User> amigos) {
+		this.amigos = amigos;
+	}
+	
+	
 
 }
