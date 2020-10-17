@@ -39,7 +39,7 @@ public class UsersService {
 		usersRepository.save(user);
 	}
 
-	public User getUserByDni(String email) {
+	public User getUserByEmail(String email) {
 		return usersRepository.findByEmail(email);
 	}
 

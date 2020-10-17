@@ -34,6 +34,11 @@ public class UsersController {
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
+	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
 
 	@RequestMapping("/user/list")
 	public String getListado(Model model, @RequestParam(value = "", required = false) String searchText) {
