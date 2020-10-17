@@ -17,11 +17,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UsersRepository usersRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// DONE: La clase userdetails.User de spring security implementa la interfaz
 		// userdetails, es la clase que utiliza el sistema de autenticación, no es el
 		// mismo user que el que maneja nuestra aplicación.
-		User user = usersRepository.findByDni(dni);
+		User user = usersRepository.findByEmail(email);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		
 		//grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ESTUDIANTE"));
