@@ -46,4 +46,14 @@ public class PO_PrivateView extends PO_NavView {
 		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'" + elemento + "')]");
 		elementos.get(0).click();
 	}
+	
+	static public void accederPagina(WebDriver driver, String lista, String elemento) {
+		List<WebElement> elementos = null;
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, '" + lista + "')]/a");
+		elementos.get(0).click();
+		// Pinchamos en la opción de lista de notas.
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'" + elemento + "')]");
+		elementos.get(0).click();
+	}
 }

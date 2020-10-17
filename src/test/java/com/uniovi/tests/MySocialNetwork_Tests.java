@@ -12,6 +12,11 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.util.SeleniumUtils;
+
 //Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MySocialNetwork_Tests {
@@ -23,12 +28,12 @@ public class MySocialNetwork_Tests {
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
-//	private String admin = "admin@email.com";
-//	private String adminc = "admin";
-//	private String user = "ana@email.com";
-//	private String userc = "123456";
-//	private String user2 = "maria@email.com";
-//	private String userc2 = "123456";
+	private String admin = "admin@email.com";
+	private String adminc = "admin";
+	private String user = "ana@email.com";
+	private String userc = "123456";
+	private String user2 = "maria@email.com";
+	private String userc2 = "123456";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -62,17 +67,17 @@ public class MySocialNetwork_Tests {
 		driver.quit();
 	}
 
-//	private String correoRandom() {
-//		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
-//	}
+	private String correoRandom() {
+		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
+	}
 
-//	private void espera() {
-//		espera(3);
-//	}
+	private void espera() {
+		espera(3);
+	}
 
-//	private void espera(int n) {
-//		SeleniumUtils.esperarSegundos(driver, n);
-//	}
+	private void espera(int n) {
+		SeleniumUtils.esperarSegundos(driver, n);
+	}
 
 	// Para chequear un texto plano:
 	// PO_View.checkElement(driver, "text", "Los usuarios que actualmente figuran");
@@ -81,52 +86,65 @@ public class MySocialNetwork_Tests {
 
 	/** Registro de Usuario con datos válidos. */
 	@Test
-	public void E1_Prueba_01() {
-
-		fail("Not yet implemented");
+	public void E01_Prueba_01() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77777");
+		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */
 	@Test
-	public void E1_Prueba_02_1() {
-		fail("Not yet implemented");
+	public void E01_Prueba_02_1() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, "", "Josefo", "Perez", "77777", "77777");
+		PO_RegisterView.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: nombre vacío */
 	@Test
-	public void E1_Prueba_02_2() {
-		fail("Not yet implemented");
+	public void E01_Prueba_02_2() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, correoRandom(), "", "Perez", "77777", "77777");
+		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: apellidos vacío */
 	@Test
-	public void E1_Prueba_02_3() {
-		fail("Not yet implemented");
+	public void E01_Prueba_02_3() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", " ", "77777", "77777");
+		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
 
 	/**
 	 * Registro de Usuario con datos inválidos: repetición de contraseña inválida
 	 */
 	@Test
-	public void E1_Prueba_03() {
-		fail("Not yet implemented");
+	public void E01_Prueba_03() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77776");
+		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+	
 	}
 
 	/** Registro de Usuario con datos inválidos: email existente */
 	@Test
-	public void E1_Prueba_04() {
-		fail("Not yet implemented");
+	public void E01_Prueba_04() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_RegisterView.fillForm(driver, user, "Josefo", "Perez", "77777", "77777");
+		//PO_View.getP();
+		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (administrador). */
 	@Test
-	public void E2_Prueba_05() {
+	public void E02_Prueba_05() {
 		fail("Not yet implemented");
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar) */
 	@Test
-	public void E2_Prueba_06() {
+	public void E02_Prueba_06() {
 		fail("Not yet implemented");
 	}
 
@@ -135,7 +153,7 @@ public class MySocialNetwork_Tests {
 	 * contraseña vacíos).
 	 */
 	@Test
-	public void E2_Prueba_07() {
+	public void E02_Prueba_07() {
 		fail("Not yet implemented");
 	}
 
@@ -144,7 +162,7 @@ public class MySocialNetwork_Tests {
 	 * contraseña incorrecta).
 	 */
 	@Test
-	public void E2_Prueba_08() {
+	public void E02_Prueba_08() {
 		fail("Not yet implemented");
 	}
 
@@ -153,7 +171,7 @@ public class MySocialNetwork_Tests {
 	 * página de inicio de sesión (Login).
 	 */
 	@Test
-	public void E3_Prueba_09() {
+	public void E03_Prueba_09() {
 		fail("Not yet implemented");
 	}
 
@@ -162,7 +180,7 @@ public class MySocialNetwork_Tests {
 	 * autenticado.
 	 */
 	@Test
-	public void E3_Prueba_10() {
+	public void E03_Prueba_10() {
 		fail("Not yet implemented");
 	}
 
@@ -171,7 +189,7 @@ public class MySocialNetwork_Tests {
 	 * existen en el sistema.
 	 */
 	@Test
-	public void E4_Prueba_11() {
+	public void E04_Prueba_11() {
 		fail("Not yet implemented");
 	}
 
@@ -180,7 +198,7 @@ public class MySocialNetwork_Tests {
 	 * que corresponde con el listado usuarios existentes en el sistema.
 	 */
 	@Test
-	public void E5_Prueba_12() {
+	public void E05_Prueba_12() {
 		fail("Not yet implemented");
 	}
 
@@ -189,7 +207,7 @@ public class MySocialNetwork_Tests {
 	 * que se muestra la página que corresponde, con la lista de usuarios vacía.
 	 */
 	@Test
-	public void E5_Prueba_13() {
+	public void E05_Prueba_13() {
 		fail("Not yet implemented");
 	}
 
@@ -199,7 +217,7 @@ public class MySocialNetwork_Tests {
 	 * especificados sea parte de su nombre, apellidos o de su email.
 	 */
 	@Test
-	public void E5_Prueba_14() {
+	public void E05_Prueba_14() {
 		fail("Not yet implemented");
 	}
 
@@ -209,7 +227,7 @@ public class MySocialNetwork_Tests {
 	 * listado de invitaciones (punto siguiente).
 	 */
 	@Test
-	public void E6_Prueba_15() {
+	public void E06_Prueba_15() {
 		fail("Not yet implemented");
 	}
 
@@ -220,7 +238,7 @@ public class MySocialNetwork_Tests {
 	 * enviar invitación o notificar que ya había sido enviada previamente.
 	 */
 	@Test
-	public void E1_Prueba_16() {
+	public void E06_Prueba_16() {
 		fail("Not yet implemented");
 	}
 
@@ -229,7 +247,7 @@ public class MySocialNetwork_Tests {
 	 * listado que contenga varias invitaciones recibidas.
 	 */
 	@Test
-	public void E7_Prueba_17() {
+	public void E07_Prueba_17() {
 		fail("Not yet implemented");
 	}
 
@@ -239,7 +257,7 @@ public class MySocialNetwork_Tests {
 	 * invitaciones.
 	 */
 	@Test
-	public void E8_Prueba_18() {
+	public void E08_Prueba_18() {
 		fail("Not yet implemented");
 	}
 
@@ -248,7 +266,7 @@ public class MySocialNetwork_Tests {
 	 * los amigos que deben ser.
 	 */
 	@Test
-	public void E9_Prueba_19() {
+	public void E09_Prueba_19() {
 		fail("Not yet implemented");
 	}
 
