@@ -28,12 +28,12 @@ public class MySocialNetwork_Tests {
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
-	private String admin = "admin@email.com";
-	private String adminc = "admin";
+//	private String admin = "admin@email.com";
+//	private String adminc = "admin";
 	private String user = "ana@email.com";
-	private String userc = "123456";
-	private String user2 = "maria@email.com";
-	private String userc2 = "123456";
+//	private String userc = "123456";
+//	private String user2 = "maria@email.com";
+//	private String userc2 = "123456";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -71,10 +71,12 @@ public class MySocialNetwork_Tests {
 		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
 	}
 
+	@SuppressWarnings("unused") //TODO: Comprobar que no se usa y borrar antes de entregar
 	private void espera() {
 		espera(3);
 	}
 
+	@SuppressWarnings("unused") //TODO: Comprobar que no se usa y borrar antes de entregar
 	private void espera(int n) {
 		SeleniumUtils.esperarSegundos(driver, n);
 	}
@@ -89,7 +91,8 @@ public class MySocialNetwork_Tests {
 	public void E01_Prueba_01() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77777");
-		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
+		//TODO: Comprobar que despues de loguear va a donde tiene que ir
+		//PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */
@@ -132,7 +135,6 @@ public class MySocialNetwork_Tests {
 	public void E01_Prueba_04() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, user, "Josefo", "Perez", "77777", "77777");
-		//PO_View.getP();
 		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 	}
 
