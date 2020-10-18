@@ -40,8 +40,74 @@ public class UsersController {
 		return "index";
 	}
 
+	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
+		public String home(Model model, Principal principal) {
+	//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	//		String dni = auth.getName();
+	//		User activeUser = usersService.getUserByDni(dni);
+	//		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
+	//		model.addAttribute("markList", activeUser.getMarks());
+	//		model.addAttribute("page", marks);
+			return "home";
+		}
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup_GET(Model model) {
+		model.addAttribute("user", new User());
+		return "signup";
+	}
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String signup_POST(@Validated User user, BindingResult result, Model model) {
+		signUpFormValidator.validate(user, result);
+		if (result.hasErrors()) {
+			return "signup";
+		}
+		user.setRole(rolesService.getRoles()[0]);
+		usersService.addUser(user);
+		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+		return "redirect:home";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login";
+	}
+
+	@RequestMapping(value = "/user/add")
+	public String user_add(Model model) {
+		model.addAttribute("rolesList", rolesService.getRoles());
+		return "user/add";
+	}
+
+	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
+	public String user_add_POST(@ModelAttribute User user) {
+		usersService.addUser(user);
+		return "redirect:/user/list";
+	}
+
+	@RequestMapping("/user/details/{id}")
+	public String user_details_id(Model model, @PathVariable Long id) {
+		model.addAttribute("user", usersService.getUser(id));
+		return "user/details";
+	}
+
+	@RequestMapping(value = "/user/edit/{id}")
+	public String user_edit_id(Model model, @PathVariable Long id) {
+		User user = usersService.getUser(id);
+		model.addAttribute("user", user);
+		return "user/edit";
+	}
+
+	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
+	public String user_edit_id_POST(Model model, @PathVariable Long id, @ModelAttribute User user) {
+		user.setId(id);
+		usersService.addUser(user);
+		return "redirect:/user/details/" + id;
+	}
+
 	@RequestMapping("/user/list")
-	public String getListado(Model model, @RequestParam(value = "", required = false) String searchText) {
+	public String user_list(Model model, @RequestParam(value = "", required = false) String searchText) {
 
 		List<User> users = new ArrayList<User>();
 		if (searchText != null && !searchText.isEmpty()) {
@@ -54,76 +120,10 @@ public class UsersController {
 		return "user/list";
 	}
 
-	@RequestMapping(value = "/user/add")
-	public String getUser(Model model) {
-		model.addAttribute("rolesList", rolesService.getRoles());
-		return "user/add";
-	}
-
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup(Model model) {
-		model.addAttribute("user", new User());
-		return "signup";
-	}
-
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String setUser(@Validated User user, BindingResult result, Model model) {
-		signUpFormValidator.validate(user, result);
-		if (result.hasErrors()) {
-			return "signup";
-		}
-		user.setRole(rolesService.getRoles()[0]);
-		usersService.addUser(user);
-		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "redirect:home";
-	}
-
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String setUser(@ModelAttribute User user) {
-		usersService.addUser(user);
-		return "redirect:/user/list";
-	}
-
-	@RequestMapping("/user/details/{id}")
-	public String getDetail(Model model, @PathVariable Long id) {
-		model.addAttribute("user", usersService.getUser(id));
-		return "user/details";
-	}
-
 	@RequestMapping("/user/delete/{id}")
-	public String delete(@PathVariable Long id) {
+	public String user_delete_id(@PathVariable Long id) {
 		usersService.deleteUser(id);
 		return "redirect:/user/list";
-	}
-
-	@RequestMapping(value = "/user/edit/{id}")
-	public String getEdit(Model model, @PathVariable Long id) {
-		User user = usersService.getUser(id);
-		model.addAttribute("user", user);
-		return "user/edit";
-	}
-
-	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-		user.setId(id);
-		usersService.addUser(user);
-		return "redirect:/user/details/" + id;
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
-		return "login";
-	}
-
-	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-	public String home(Model model, Principal principal) {
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String dni = auth.getName();
-//		User activeUser = usersService.getUserByDni(dni);
-//		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
-//		model.addAttribute("markList", activeUser.getMarks());
-//		model.addAttribute("page", marks);
-		return "home";
 	}
 
 }
