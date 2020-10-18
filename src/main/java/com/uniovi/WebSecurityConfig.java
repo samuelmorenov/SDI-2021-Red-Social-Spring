@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			//TODO: Comprobar permisos
+			//TO-DO: Comprobar permisos
 //			.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
 //			.antMatchers("/mark/add").hasAuthority("ROLE_PROFESSOR")
 //			.antMatchers("/mark/edit/*").hasAuthority("ROLE_PROFESSOR")

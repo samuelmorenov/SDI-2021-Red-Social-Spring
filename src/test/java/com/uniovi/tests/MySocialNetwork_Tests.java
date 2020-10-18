@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.util.SeleniumUtils;
@@ -28,10 +29,10 @@ public class MySocialNetwork_Tests {
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
-//	private String admin = "admin@email.com";
-//	private String adminc = "admin";
+	private String admin = "admin@email.com";
+	private String adminc = "admin";
 	private String user = "ana@email.com";
-//	private String userc = "123456";
+	private String userc = "123456";
 //	private String user2 = "maria@email.com";
 //	private String userc2 = "123456";
 
@@ -71,12 +72,14 @@ public class MySocialNetwork_Tests {
 		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
 	}
 
-	@SuppressWarnings("unused") //TODO: Comprobar que no se usa y borrar antes de entregar
+	//TO-DO: Comprobar que no se usa y borrar antes de entregar
+	@SuppressWarnings("unused") 
 	private void espera() {
 		espera(3);
 	}
 
-	@SuppressWarnings("unused") //TODO: Comprobar que no se usa y borrar antes de entregar
+	//TO-DO: Comprobar que no se usa y borrar antes de entregar
+	@SuppressWarnings("unused") 
 	private void espera(int n) {
 		SeleniumUtils.esperarSegundos(driver, n);
 	}
@@ -141,13 +144,19 @@ public class MySocialNetwork_Tests {
 	/** Inicio de sesión con datos válidos (administrador). */
 	@Test
 	public void E02_Prueba_05() {
-		fail("Not yet implemented");
+		//TODO in progress...
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, admin, adminc);
+		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar) */
 	@Test
 	public void E02_Prueba_06() {
-		fail("Not yet implemented");
+		//TODO in progress...
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -156,7 +165,10 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E02_Prueba_07() {
-		fail("Not yet implemented");
+		//TODO in progress...
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, "", "");
+		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -165,7 +177,10 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E02_Prueba_08() {
-		fail("Not yet implemented");
+		//TODO in progress...
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, "incorrecta");
+		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
 	/**
