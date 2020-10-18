@@ -138,9 +138,9 @@ public class UsersController {
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
-		// // Set lista de invitaciones
-		// List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
-		// model.addAttribute("usersWithInvitation", userList);
+//		// Set lista de invitaciones
+//		List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
+//		model.addAttribute("usersWithInvitation", userList);
 	}
 
 }

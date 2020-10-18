@@ -16,6 +16,7 @@ import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
 //Ordenamos las pruebas por el nombre del método
@@ -72,14 +73,12 @@ public class MySocialNetwork_Tests {
 		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
 	}
 
-	//TO-DO: Comprobar que no se usa y borrar antes de entregar
-	@SuppressWarnings("unused") 
+	// TO-DO: Comprobar que no se usa y borrar antes de entregar
+	@SuppressWarnings("unused")
 	private void espera() {
 		espera(3);
 	}
 
-	//TO-DO: Comprobar que no se usa y borrar antes de entregar
-	@SuppressWarnings("unused") 
 	private void espera(int n) {
 		SeleniumUtils.esperarSegundos(driver, n);
 	}
@@ -94,8 +93,7 @@ public class MySocialNetwork_Tests {
 	public void E01_Prueba_01() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77777");
-		//TODO: Comprobar que despues de loguear va a donde tiene que ir
-		//PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
+		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */
@@ -130,7 +128,7 @@ public class MySocialNetwork_Tests {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77776");
 		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
-	
+
 	}
 
 	/** Registro de Usuario con datos inválidos: email existente */
@@ -144,7 +142,6 @@ public class MySocialNetwork_Tests {
 	/** Inicio de sesión con datos válidos (administrador). */
 	@Test
 	public void E02_Prueba_05() {
-		//TODO in progress...
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, admin, adminc);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
@@ -153,7 +150,6 @@ public class MySocialNetwork_Tests {
 	/** Inicio de sesión con datos válidos (usuario estándar) */
 	@Test
 	public void E02_Prueba_06() {
-		//TODO in progress...
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, user, userc);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
@@ -165,7 +161,6 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E02_Prueba_07() {
-		//TODO in progress...
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, "", "");
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
@@ -177,7 +172,7 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E02_Prueba_08() {
-		//TODO in progress...
+		// TODO in progress...
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, user, "incorrecta");
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
@@ -189,7 +184,11 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E03_Prueba_09() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, admin, adminc);
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+		PO_View.checkElement(driver, "text", "Identifícate");
+		// TODO Cambiar texto a internacionalizado
 	}
 
 	/**
@@ -198,7 +197,7 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E03_Prueba_10() {
-		fail("Not yet implemented");
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
 	}
 
 	/**
@@ -207,7 +206,15 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E04_Prueba_11() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_View.checkElement(driver, "text", "lucas@email.com");
+		PO_View.checkElement(driver, "text", "maria@email.com");
+		PO_View.checkElement(driver, "text", "marta@email.com");
+		PO_View.checkElement(driver, "text", "pelayo@email.com");
+		PO_View.checkElement(driver, "text", "k@email.com");
+
+		// TODO Comprobar paginacion
 	}
 
 	/**
