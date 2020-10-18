@@ -111,11 +111,17 @@ public class UsersController {
 		return "user/list";
 	}
 
+// TODO Cambiar index a list o redirigir a login
+//	@RequestMapping("/")
+//	public String index(Model model, Pageable pageable, Principal principal,
+//			@RequestParam(value = "", required = false) String searchText) {
+//		this.list(model, pageable, principal, searchText);
+//		return "user/list";
+//	}
+//	
 	@RequestMapping("/")
-	public String index(Model model, Pageable pageable, Principal principal,
-			@RequestParam(value = "", required = false) String searchText) {
-		this.list(model, pageable, principal, searchText);
-		return "user/list";
+	public String index() {
+		return "index";
 	}
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
