@@ -1,11 +1,16 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +27,17 @@ public class UsersService {
 
 	@PostConstruct
 	public void init() {
+	}
+
+	@Autowired
+	private HttpSession httpSession;
+
+	public Page<User> getUsers(Pageable pageable) {
+
+		User activeUser = (User) httpSession.getAttribute("currentlyUser");
+		Page<User> users = usersRepository.findRegularUsers(pageable, activeUser.getEmail());
+
+		return users;
 	}
 
 	public List<User> getUsers() {
@@ -47,11 +63,18 @@ public class UsersService {
 		usersRepository.deleteById(id);
 	}
 
-	public List<User> searchByNameAndLastname(String searchText) {
-		List<User> users = new ArrayList<User>();
+	public Page<User> searchByNameAndLastname(Pageable pageable, String searchText) {
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		searchText = "%" + searchText + "%";
-		users = usersRepository.searchByNameAndLastname(searchText);
+		User activeUser = (User) httpSession.getAttribute("currentlyUser");
+
+		users = usersRepository.searchByNameEmailAndLastname(pageable, searchText, activeUser.getEmail());
 
 		return users;
 	}
+
+	public void update(User user) {
+		usersRepository.save(user);
+	}
+
 }
