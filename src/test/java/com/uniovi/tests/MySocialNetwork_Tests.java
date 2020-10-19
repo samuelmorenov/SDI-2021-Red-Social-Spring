@@ -13,9 +13,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_Invitation;
 import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_Search;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
@@ -34,8 +37,8 @@ public class MySocialNetwork_Tests {
 	private String adminc = "admin";
 	private String user = "ana@email.com";
 	private String userc = "123456";
-//	private String user2 = "maria@email.com";
-//	private String userc2 = "123456";
+	private String user2 = "maria@email.com";
+	private String userc2 = "123456";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -223,7 +226,14 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E05_Prueba_12() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_Search.search(driver, "");
+		PO_View.checkElement(driver, "text", "lucas@email.com");
+		PO_View.checkElement(driver, "text", "maria@email.com");
+		PO_View.checkElement(driver, "text", "marta@email.com");
+		PO_View.checkElement(driver, "text", "pelayo@email.com");
+		PO_View.checkElement(driver, "text", "k@email.com");
 	}
 
 	/**
@@ -232,7 +242,10 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E05_Prueba_13() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_Search.search(driver, "pepe");
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "@email", PO_View.getTimeout());
 	}
 
 	/**
@@ -242,7 +255,11 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E05_Prueba_14() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_Search.search(driver, "ma");
+		PO_View.checkElement(driver, "text", "maria@email.com");
+		PO_View.checkElement(driver, "text", "marta@email.com");
 	}
 
 	/**
@@ -252,7 +269,11 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E06_Prueba_15() {
-		fail("Not yet implemented");
+		PO_Invitation.enviarPeticiones(driver);
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user2, userc2);
+		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
+		PO_View.checkElement(driver, "text", "Pedro");
 	}
 
 	/**
@@ -263,7 +284,10 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E06_Prueba_16() {
-		fail("Not yet implemented");
+		PO_Invitation.enviarPeticiones(driver);
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user, userc);
+		PO_HomeView.noEsClickable(driver, "sendButton2");
 	}
 
 	/**
@@ -272,7 +296,13 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E07_Prueba_17() {
-		fail("Not yet implemented");
+		PO_Invitation.enviarPeticiones(driver);
+		PO_Invitation.enviarPeticiones2(driver);
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user2, userc2);
+		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
+		PO_View.checkElement(driver, "text", "Pedro");
+		PO_View.checkElement(driver, "text", "María");
 	}
 
 	/**
@@ -282,7 +312,10 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E08_Prueba_18() {
-		fail("Not yet implemented");
+		PO_Invitation.enviarPeticiones(driver);
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, user2, userc2);
+		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
 	}
 
 	/**
