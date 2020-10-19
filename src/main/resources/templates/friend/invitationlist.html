@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2>Lista de peticiones</h2>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th class="col-md-1"></th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="invitation : ${invitationList}"
+						th:id="${'invitation' + invitation.emisor.id}">
+						<td th:text="${invitation.emisor.name}">Nombre del alumno</td>
+
+						<td>
+							<button type="button" th:id="${'acceptButton' + invitation.id}"
+								class="btn btn-default">Aceptar</button> <script
+								th:inline="javascript"> 
+							/*<![CDATA[*/
+							$( "#acceptButton[[${invitation.id}]]" ).click(
+								function() {
+									var friend = [[${invitation.emisor.id}]];
+									var invitation = [[${invitation.id}]];
+									$.post("/friend/accept",{"InvitationId" : invitation});
+									$("#acceptButton[[${invitation.id}]]").remove();
+								}
+							); 
+							/*]]>*/
+							</script>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer th:replace="fragments/pagination" />
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

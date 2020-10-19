@@ -12,41 +12,24 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/" th:text="#{nav.inicio}">Home</a></li>
-				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{nav.gestion.notas}">
-						Gestión de notas <span class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
-							href="/mark/add" th:text="#{nav.agregar.notas}">Agregar Nota</a></li>
-						<li><a href="/mark/list" th:text="#{nav.listar.notas}">Ver
-								Notas</a></li>
-					</ul></li>
-
-				<li id="professors-menu" class="dropdown"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					th:text="#{nav.gestion.profesores}"> Gestión de profesores <span
-						class="caret"></span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a sec:authorize="hasRole('ROLE_ADMIN')"
-							href="/professor/add" th:text="#{nav.agregar.profesores}">Agregar
-								profesor</a></li>
-						<li><a href="/professor/list"
-							th:text="#{nav.listar.profesores}">Ver profesores</a></li>
-					</ul></li>
-
-				<li id="users-menu" class="dropdown"
-					sec:authorize="hasRole('ROLE_ADMIN')"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					th:text="#{nav.gestion.usuarios}"> Gestión de Usuarios <span
-						class="caret"></span>
+				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{nav.gestion.usuarios}">
+						Usuarios <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="/user/add" th:text="#{nav.agregar.usuarios}">Agregar
 								usuario</a></li>
 						<li><a href="/user/list" th:text="#{nav.listar.usuarios}">Ver
 								Usuarios</a></li>
+					</ul></li>
+
+				<li id="friends-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{nav.friend}">
+						Amigos <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/friend/invitationlist" th:text="#{nav.friend.invitation}">Lista de peticiones</a></li>
+						<li><a href="/friend/friendlist" th:text="#{nav.friend.friends}">Lista de amigos</a></li>
 					</ul></li>
 
 			</ul>
