@@ -27,12 +27,12 @@ public class PO_PrivateView extends PO_NavView {
 		driver.findElement(boton).click();
 	}
 
-	static public void login(WebDriver driver, String dnip, String passwordp, String text) {
+	static public void login(WebDriver driver, String emailp, String passwordp, String text) {
 
 		// Vamos al formulario de logueo.
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, dnip, passwordp);
+		PO_LoginView.fillForm(driver, emailp, passwordp);
 		// COmprobamos que entramos en la pagina privada del Profesor
 		PO_View.checkElement(driver, "text", text);
 
@@ -46,7 +46,7 @@ public class PO_PrivateView extends PO_NavView {
 		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'" + elemento + "')]");
 		elementos.get(0).click();
 	}
-	
+
 	static public void accederPagina(WebDriver driver, String lista, String elemento) {
 		List<WebElement> elementos = null;
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a

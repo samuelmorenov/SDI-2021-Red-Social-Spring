@@ -18,22 +18,14 @@ public class SecurityService {
 	private UserDetailsService userDetailsService;
 	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
-	public String findLoggedInDni() {
-		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-		if (userDetails instanceof UserDetails) {
-			return ((UserDetails) userDetails).getUsername();
-		}
-		return null;
-	}
-
-	public void autoLogin(String dni, String password) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(dni);
+	public void autoLogin(String email, String password) {
+		UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 		UsernamePasswordAuthenticationToken aToken = new UsernamePasswordAuthenticationToken(userDetails, password,
 				userDetails.getAuthorities());
 		authenticationManager.authenticate(aToken);
 		if (aToken.isAuthenticated()) {
 			SecurityContextHolder.getContext().setAuthentication(aToken);
-			logger.debug(String.format("Auto login %s successfully!", dni));
+			logger.debug(String.format("Auto login %s successfully!", email));
 		}
 	}
 }

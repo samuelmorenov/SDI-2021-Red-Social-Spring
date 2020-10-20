@@ -2,6 +2,8 @@ package com.uniovi.controllers;
 
 import java.security.Principal;
 import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
+import com.uniovi.services.InvitationsService;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
@@ -42,6 +45,9 @@ public class UsersController {
 
 	@Autowired
 	private HttpSession httpSession;
+	
+	@Autowired
+	private InvitationsService invitationsService;
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup_GET(Model model) {
@@ -144,9 +150,9 @@ public class UsersController {
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
-//		// Set lista de invitaciones
-//		List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
-//		model.addAttribute("usersWithInvitation", userList);
+		// Set lista de invitaciones
+		List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
+		model.addAttribute("usersWithInvitation", userList);
 	}
 
 }
