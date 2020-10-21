@@ -47,21 +47,18 @@ public class UsersController {
 	@Autowired
 	private InvitationsService invitationsService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	@RequestMapping(value = "/login")//, method = RequestMethod.GET)
+	public String login_GET(Model model) {
 		return "login";
 	}
 
-	//TODO: Crear metodo POST para login???
+
 //	@RequestMapping(value = "/login", method = RequestMethod.POST)
 //	public String login_POST(@Validated User user, BindingResult result, Model model) {
 //		signUpFormValidator.validate(user, result);
 //		if (result.hasErrors()) {
 //			return "login";
 //		}
-//		user.setRole(rolesService.getRoles()[0]);
-//		usersService.addUser(user);
-//		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 //		return "redirect:home";
 //	}
 
