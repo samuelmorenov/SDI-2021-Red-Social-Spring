@@ -18,16 +18,18 @@ public class LoginFormValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		User user = (User) target;
+		// User user = (User) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Error.empty");
-		
-		if (usersService.getUserByEmail(user.getEmail()) == null) {
-			errors.rejectValue("email", "Error.signup.email.noexist");
-		}
-		
-	
-//		if (!usersService.ge.equals(user.getPassword())) {
-//			errors.rejectValue("passwordConfirm", "Error.signup.passwordConfirm.noexist");
-//		}
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Error.empty");
+
+		// if (usersService.getUserByEmail(user.getEmail()) == null) {
+		// errors.rejectValue("email", "Error.login");
+		// }
+
+		// if (!usersService.ge.equals(user.getPassword())) {
+		// errors.rejectValue("passwordConfirm",
+		// "Error.signup.passwordConfirm.noexist");
+		// }
 	}
 }
