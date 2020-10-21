@@ -9,7 +9,7 @@ import com.uniovi.tests.pageobjects.PO_Search;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
-public class Ejercicio05_Tests extends ClasePadre{
+public class Ejercicio05_Tests extends Test_Config{
 
 
 	/**

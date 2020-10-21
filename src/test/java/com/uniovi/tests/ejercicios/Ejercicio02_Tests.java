@@ -8,7 +8,7 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 
-public class Ejercicio02_Tests extends ClasePadre{
+public class Ejercicio02_Tests extends Test_Config{
 	
 
 	/** Inicio de sesión con datos válidos (administrador). */

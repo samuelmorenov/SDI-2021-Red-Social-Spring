@@ -9,7 +9,7 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
-public class Ejercicio06_Tests extends ClasePadre {
+public class Ejercicio06_Tests extends Test_Config {
 
 	/**
 	 * Desde el listado de usuarios de la aplicación, enviar una invitación de

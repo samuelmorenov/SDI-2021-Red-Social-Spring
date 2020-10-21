@@ -7,7 +7,7 @@ import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 
-public class Ejercicio01_Tests extends ClasePadre {
+public class Ejercicio01_Tests extends Test_Config {
 
 	/** Registro de Usuario con datos válidos. */
 	@Test

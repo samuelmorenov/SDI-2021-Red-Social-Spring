@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.util.SeleniumUtils;
 
-public class ClasePadre {
+public class Test_Config {
 	// En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioenes
 	// automáticas):
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";

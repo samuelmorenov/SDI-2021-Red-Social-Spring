@@ -7,7 +7,7 @@ import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_View;
 
-public class Ejercicio04_Tests extends ClasePadre{
+public class Ejercicio04_Tests extends Test_Config{
 	/**
 	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
 	 * existen en el sistema.

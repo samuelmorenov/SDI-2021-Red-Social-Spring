@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.fail;
 
-public class Ejercicio11_Tests extends ClasePadre {
+public class Ejercicio11_Tests extends Test_Config {
 	/**
 	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se
 	 * deberá volver al formulario de login.

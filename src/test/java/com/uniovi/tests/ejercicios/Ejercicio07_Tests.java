@@ -9,7 +9,7 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
-public class Ejercicio07_Tests extends ClasePadre{
+public class Ejercicio07_Tests extends Test_Config{
 
 	/**
 	 * Mostrar el listado de invitaciones de amistad recibidas. Comprobar con un

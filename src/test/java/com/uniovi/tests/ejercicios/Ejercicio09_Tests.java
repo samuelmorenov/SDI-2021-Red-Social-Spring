@@ -4,7 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class Ejercicio09_Tests extends ClasePadre {
+public class Ejercicio09_Tests extends Test_Config {
 	/**
 	 * Mostrar el listado de amigos de un usuario. Comprobar que el listado contiene
 	 * los amigos que deben ser.
