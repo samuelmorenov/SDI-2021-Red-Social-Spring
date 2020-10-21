@@ -10,7 +10,7 @@ public class UserDto {
 	public UserDto() {
 	}
 
-	public UserDto(String email, String name, String lastName, String role, String password) {
+	public UserDto(String email, String name, String lastName, String password, String role) {
 		super();
 		this.email = email;
 		this.name = name;
