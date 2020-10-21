@@ -21,9 +21,9 @@ public class UserList {
 
 	private static UserDto[] getUsuariosTest() {
 		RolesService rolesService = new RolesService();
-		UserDto[] list = new UserDto[5];
-		list[0] = new UserDto("ana@email.com", "Ana", "Gomez", "123456", rolesService.getRoles()[0]);
-		list[1] = new UserDto("flor@email.com", "Flor", "Azul", "123456", rolesService.getRoles()[0]);
+		UserDto[] list = new UserDto[2];
+		list[0] = new UserDto("liliana@email.com", "Liliana", "Gomez", "123456", rolesService.getRoles()[0]);
+		list[1] = new UserDto("florentina@email.com", "Florentina", "Azul", "123456", rolesService.getRoles()[0]);
 
 		return list;
 	}
@@ -37,13 +37,13 @@ public class UserList {
 		return list;
 	}
 
-	public final static UserDto[] adminTest = getAdminTest();
-
-	private static UserDto[] getAdminTest() {
-		RolesService rolesService = new RolesService();
-		UserDto[] list = new UserDto[1];
-		list[0] = new UserDto("admin@email.com", "Admin", "Admin", "adminc", rolesService.getRoles()[1]);
-		return list;
-	}
+//	public final static UserDto[] adminTest = getAdminTest();
+//
+//	private static UserDto[] getAdminTest() {
+//		RolesService rolesService = new RolesService();
+//		UserDto[] list = new UserDto[1];
+//		list[0] = new UserDto("admin@email.com", "Admin", "Admin", "adminc", rolesService.getRoles()[1]);
+//		return list;
+//	}
 
 }

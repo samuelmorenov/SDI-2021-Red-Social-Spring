@@ -12,6 +12,7 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Invitation;
 import com.uniovi.tests.pageobjects.PO_LoginView;
@@ -32,13 +33,6 @@ public class MySocialNetwork_Tests {
 	// Comun:
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
-
-	private String admin = "admin@email.com";
-	private String adminc = "admin";
-	private String user = "ana@email.com";
-	private String userc = "123456";
-	private String user2 = "maria@email.com";
-	private String userc2 = "123456";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -95,7 +89,10 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_01() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77777");
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
+				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password);
+		espera();
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -103,7 +100,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_02_1() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, "", "Josefo", "Perez", "77777", "77777");
+		PO_RegisterView.fillForm(driver, "", UserList.usuariosTest[0].name,
+				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password);
 		PO_RegisterView.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
 	}
 
@@ -111,7 +110,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_02_2() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), "", "Perez", "77777", "77777");
+		PO_RegisterView.fillForm(driver, correoRandom(), "",
+				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password);
 		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 	}
 
@@ -119,7 +120,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_02_3() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", " ", "77777", "77777");
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
+				"", UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password);
 		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
 
@@ -129,7 +132,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_03() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), "Josefo", "Perez", "77777", "77776");
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
+				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password + "e") ;
 		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 
 	}
@@ -138,7 +143,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_04() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, user, "Josefo", "Perez", "77777", "77777");
+		PO_RegisterView.fillForm(driver, UserList.usuarios[0].email, UserList.usuariosTest[0].name,
+				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
+				UserList.usuariosTest[0].password + "e") ;
 		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 	}
 
@@ -146,7 +153,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E02_Prueba_05() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, admin, adminc);
+		PO_LoginView.fillForm(driver, UserList.admins[0].email, UserList.admins[0].password);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -154,7 +161,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E02_Prueba_06() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
+		PO_LoginView.fillForm(driver, UserList.usuarios[0].email, UserList.usuarios[0].password);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -175,9 +182,8 @@ public class MySocialNetwork_Tests {
 	 */
 	@Test
 	public void E02_Prueba_08() {
-		// TODO in progress...
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, "incorrecta");
+		PO_LoginView.fillForm(driver, UserList.usuarios[0].email, "incorrecta");
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
@@ -188,183 +194,184 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E03_Prueba_09() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, admin, adminc);
+		PO_LoginView.fillForm(driver, UserList.usuarios[0].name, UserList.usuarios[0].password);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+		espera();
 		PO_View.checkElement(driver, "text", "Identifícate");
 		// TODO Cambiar texto a internacionalizado
 	}
 
-	/**
-	 * Comprobar que el botón cerrar sesión no está visible si el usuario no está
-	 * autenticado.
-	 */
-	@Test
-	public void E03_Prueba_10() {
-		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
-	}
-
-	/**
-	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
-	 * existen en el sistema.
-	 */
-	@Test
-	public void E04_Prueba_11() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
-		PO_View.checkElement(driver, "text", "lucas@email.com");
-		PO_View.checkElement(driver, "text", "maria@email.com");
-		PO_View.checkElement(driver, "text", "marta@email.com");
-		PO_View.checkElement(driver, "text", "pelayo@email.com");
-		PO_View.checkElement(driver, "text", "k@email.com");
-
-		// TODO Comprobar paginacion
-	}
-
-	/**
-	 * Hacer una búsqueda con el campo vacío y comprobar que se muestra la página
-	 * que corresponde con el listado usuarios existentes en el sistema.
-	 */
-	@Test
-	public void E05_Prueba_12() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
-		PO_Search.search(driver, "");
-		PO_View.checkElement(driver, "text", "lucas@email.com");
-		PO_View.checkElement(driver, "text", "maria@email.com");
-		PO_View.checkElement(driver, "text", "marta@email.com");
-		PO_View.checkElement(driver, "text", "pelayo@email.com");
-		PO_View.checkElement(driver, "text", "k@email.com");
-	}
-
-	/**
-	 * Hacer una búsqueda escribiendo en el campo un texto que no exista y comprobar
-	 * que se muestra la página que corresponde, con la lista de usuarios vacía.
-	 */
-	@Test
-	public void E05_Prueba_13() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
-		PO_Search.search(driver, "pepe");
-		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "@email", PO_View.getTimeout());
-	}
-
-	/**
-	 * Hacer una búsqueda con un texto específico y comprobar que se muestra la
-	 * página que corresponde, con la lista de usuarios en los que el texto
-	 * especificados sea parte de su nombre, apellidos o de su email.
-	 */
-	@Test
-	public void E05_Prueba_14() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
-		PO_Search.search(driver, "ma");
-		PO_View.checkElement(driver, "text", "maria@email.com");
-		PO_View.checkElement(driver, "text", "marta@email.com");
-	}
-
-	/**
-	 * Desde el listado de usuarios de la aplicación, enviar una invitación de
-	 * amistad a un usuario. Comprobar que la solicitud de amistad aparece en el
-	 * listado de invitaciones (punto siguiente).
-	 */
-	@Test
-	public void E06_Prueba_15() {
-		PO_Invitation.enviarPeticiones(driver);
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user2, userc2);
-		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
-		PO_View.checkElement(driver, "text", "Pedro");
-	}
-
-	/**
-	 * Desde el listado de usuarios de la aplicación, enviar una invitación de
-	 * amistad a un usuario al que ya le habíamos enviado la invitación previamente.
-	 * No debería dejarnos enviar la invitación, se podría ocultar el botón de
-	 * enviar invitación o notificar que ya había sido enviada previamente.
-	 */
-	@Test
-	public void E06_Prueba_16() {
-		PO_Invitation.enviarPeticiones(driver);
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user, userc);
-		PO_HomeView.noEsClickable(driver, "sendButton2");
-	}
-
-	/**
-	 * Mostrar el listado de invitaciones de amistad recibidas. Comprobar con un
-	 * listado que contenga varias invitaciones recibidas.
-	 */
-	@Test
-	public void E07_Prueba_17() {
-		PO_Invitation.enviarPeticiones(driver);
-		PO_Invitation.enviarPeticiones2(driver);
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user2, userc2);
-		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
-		PO_View.checkElement(driver, "text", "Pedro");
-		PO_View.checkElement(driver, "text", "María");
-	}
-
-	/**
-	 * Sobre el listado de invitaciones recibidas. Hacer click en el botón/enlace de
-	 * una de ellas y comprobar que dicha solicitud desaparece del listado de
-	 * invitaciones.
-	 */
-	@Test
-	public void E08_Prueba_18() {
-		PO_Invitation.enviarPeticiones(driver);
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, user2, userc2);
-		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
-	}
-
-	/**
-	 * Mostrar el listado de amigos de un usuario. Comprobar que el listado contiene
-	 * los amigos que deben ser.
-	 */
-	@Test
-	public void E09_Prueba_19() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Visualizar al menos cuatro páginas en Español/Inglés/Español (comprobando que
-	 * algunas de las etiquetas cambian al idioma correspondiente). Ejemplo, Página
-	 * principal/Opciones Principales de Usuario/Listado de Usuarios.
-	 */
-	@Test
-	public void E10_Prueba_20() {
-		fail("Not yet implemented");
-
-	}
-
-	/**
-	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se
-	 * deberá volver al formulario de login.
-	 */
-	@Test
-	public void E11_Prueba_21() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Intentar acceder sin estar autenticado a la opción de listado de invitaciones
-	 * de amistad recibida de un usuario estándar. Se deberá volver al formulario de
-	 * login.
-	 */
-	@Test
-	public void E11_Prueba_22() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Estando autenticado como usuario estándar intentar acceder a una opción
-	 * disponible solo para usuarios administradores (Se puede añadir una opción
-	 * cualquiera en el menú). Se deberá indicar un mensaje de acción prohibida.
-	 */
-	@Test
-	public void E11_Prueba_23() {
-		fail("Not yet implemented");
-	}
-
+//	/**
+//	 * Comprobar que el botón cerrar sesión no está visible si el usuario no está
+//	 * autenticado.
+//	 */
+//	@Test
+//	public void E03_Prueba_10() {
+//		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
+//	}
+//
+//	/**
+//	 * Mostrar el listado de usuarios y comprobar que se muestran todos los que
+//	 * existen en el sistema.
+//	 */
+//	@Test
+//	public void E04_Prueba_11() {
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user, userc);
+//		PO_View.checkElement(driver, "text", "lucas@email.com");
+//		PO_View.checkElement(driver, "text", "maria@email.com");
+//		PO_View.checkElement(driver, "text", "marta@email.com");
+//		PO_View.checkElement(driver, "text", "pelayo@email.com");
+//		PO_View.checkElement(driver, "text", "k@email.com");
+//
+//		// TODO Comprobar paginacion
+//	}
+//
+//	/**
+//	 * Hacer una búsqueda con el campo vacío y comprobar que se muestra la página
+//	 * que corresponde con el listado usuarios existentes en el sistema.
+//	 */
+//	@Test
+//	public void E05_Prueba_12() {
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user, userc);
+//		PO_Search.search(driver, "");
+//		PO_View.checkElement(driver, "text", "lucas@email.com");
+//		PO_View.checkElement(driver, "text", "maria@email.com");
+//		PO_View.checkElement(driver, "text", "marta@email.com");
+//		PO_View.checkElement(driver, "text", "pelayo@email.com");
+//		PO_View.checkElement(driver, "text", "k@email.com");
+//	}
+//
+//	/**
+//	 * Hacer una búsqueda escribiendo en el campo un texto que no exista y comprobar
+//	 * que se muestra la página que corresponde, con la lista de usuarios vacía.
+//	 */
+//	@Test
+//	public void E05_Prueba_13() {
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user, userc);
+//		PO_Search.search(driver, "pepe");
+//		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "@email", PO_View.getTimeout());
+//	}
+//
+//	/**
+//	 * Hacer una búsqueda con un texto específico y comprobar que se muestra la
+//	 * página que corresponde, con la lista de usuarios en los que el texto
+//	 * especificados sea parte de su nombre, apellidos o de su email.
+//	 */
+//	@Test
+//	public void E05_Prueba_14() {
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user, userc);
+//		PO_Search.search(driver, "ma");
+//		PO_View.checkElement(driver, "text", "maria@email.com");
+//		PO_View.checkElement(driver, "text", "marta@email.com");
+//	}
+//
+//	/**
+//	 * Desde el listado de usuarios de la aplicación, enviar una invitación de
+//	 * amistad a un usuario. Comprobar que la solicitud de amistad aparece en el
+//	 * listado de invitaciones (punto siguiente).
+//	 */
+//	@Test
+//	public void E06_Prueba_15() {
+//		PO_Invitation.enviarPeticiones(driver);
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user2, userc2);
+//		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
+//		PO_View.checkElement(driver, "text", "Pedro");
+//	}
+//
+//	/**
+//	 * Desde el listado de usuarios de la aplicación, enviar una invitación de
+//	 * amistad a un usuario al que ya le habíamos enviado la invitación previamente.
+//	 * No debería dejarnos enviar la invitación, se podría ocultar el botón de
+//	 * enviar invitación o notificar que ya había sido enviada previamente.
+//	 */
+//	@Test
+//	public void E06_Prueba_16() {
+//		PO_Invitation.enviarPeticiones(driver);
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user, userc);
+//		PO_HomeView.noEsClickable(driver, "sendButton2");
+//	}
+//
+//	/**
+//	 * Mostrar el listado de invitaciones de amistad recibidas. Comprobar con un
+//	 * listado que contenga varias invitaciones recibidas.
+//	 */
+//	@Test
+//	public void E07_Prueba_17() {
+//		PO_Invitation.enviarPeticiones(driver);
+//		PO_Invitation.enviarPeticiones2(driver);
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user2, userc2);
+//		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
+//		PO_View.checkElement(driver, "text", "Pedro");
+//		PO_View.checkElement(driver, "text", "María");
+//	}
+//
+//	/**
+//	 * Sobre el listado de invitaciones recibidas. Hacer click en el botón/enlace de
+//	 * una de ellas y comprobar que dicha solicitud desaparece del listado de
+//	 * invitaciones.
+//	 */
+//	@Test
+//	public void E08_Prueba_18() {
+//		PO_Invitation.enviarPeticiones(driver);
+//		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+//		PO_LoginView.fillForm(driver, user2, userc2);
+//		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
+//	}
+//
+//	/**
+//	 * Mostrar el listado de amigos de un usuario. Comprobar que el listado contiene
+//	 * los amigos que deben ser.
+//	 */
+//	@Test
+//	public void E09_Prueba_19() {
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Visualizar al menos cuatro páginas en Español/Inglés/Español (comprobando que
+//	 * algunas de las etiquetas cambian al idioma correspondiente). Ejemplo, Página
+//	 * principal/Opciones Principales de Usuario/Listado de Usuarios.
+//	 */
+//	@Test
+//	public void E10_Prueba_20() {
+//		fail("Not yet implemented");
+//
+//	}
+//
+//	/**
+//	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se
+//	 * deberá volver al formulario de login.
+//	 */
+//	@Test
+//	public void E11_Prueba_21() {
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Intentar acceder sin estar autenticado a la opción de listado de invitaciones
+//	 * de amistad recibida de un usuario estándar. Se deberá volver al formulario de
+//	 * login.
+//	 */
+//	@Test
+//	public void E11_Prueba_22() {
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
+//	 * Estando autenticado como usuario estándar intentar acceder a una opción
+//	 * disponible solo para usuarios administradores (Se puede añadir una opción
+//	 * cualquiera en el menú). Se deberá indicar un mensaje de acción prohibida.
+//	 */
+//	@Test
+//	public void E11_Prueba_23() {
+//		fail("Not yet implemented");
+//	}
+//
 }
