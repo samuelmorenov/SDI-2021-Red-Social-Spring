@@ -31,8 +31,6 @@ import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
 public class UsersController {
-	@Autowired
-	private RolesService rolesService;
 
 	@Autowired
 	private UsersService usersService;
@@ -49,6 +47,24 @@ public class UsersController {
 	@Autowired
 	private InvitationsService invitationsService;
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login";
+	}
+
+	//TODO: Crear metodo POST para login???
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login_POST(@Validated User user, BindingResult result, Model model) {
+//		signUpFormValidator.validate(user, result);
+//		if (result.hasErrors()) {
+//			return "login";
+//		}
+//		user.setRole(rolesService.getRoles()[0]);
+//		usersService.addUser(user);
+//		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+//		return "redirect:home";
+//	}
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup_GET(Model model) {
 		model.addAttribute("user", new User());
@@ -61,20 +77,15 @@ public class UsersController {
 		if (result.hasErrors()) {
 			return "signup";
 		}
-		user.setRole(rolesService.getRoles()[0]);
+		user.setRole(RolesService.getRoles()[0]);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 		return "redirect:home";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
-		return "login";
-	}
-
 	@RequestMapping(value = "/user/add")
 	public String user_add(Model model) {
-		model.addAttribute("rolesList", rolesService.getRoles());
+		model.addAttribute("rolesList", RolesService.getRoles());
 		return "user/add";
 	}
 

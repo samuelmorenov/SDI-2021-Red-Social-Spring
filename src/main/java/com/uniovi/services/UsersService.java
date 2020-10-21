@@ -35,7 +35,8 @@ public class UsersService {
 	public Page<User> getUsers(Pageable pageable) {
 
 		User activeUser = (User) httpSession.getAttribute("currentlyUser");
-		Page<User> users = usersRepository.findRegularUsers(pageable, activeUser.getEmail());
+		Page<User> users = usersRepository.findOthersUsersWithNoThisRole(pageable, activeUser.getEmail(),
+				RolesService.getRoles()[1]);
 
 		return users;
 	}
