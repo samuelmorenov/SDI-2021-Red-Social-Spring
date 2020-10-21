@@ -1,6 +1,8 @@
 package com.uniovi.tests.ejercicios;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
@@ -9,15 +11,15 @@ import com.uniovi.tests.pageobjects.PO_Search;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
-public class Ejercicio05_Tests extends Test_Config{
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class Ejercicio05_Tests extends Test_Config {
 
 	/**
 	 * Hacer una búsqueda con el campo vacío y comprobar que se muestra la página
 	 * que corresponde con el listado usuarios existentes en el sistema.
 	 */
 	@Test
-	public void E05_Prueba_12() {
+	public void Prueba_12() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
 		PO_Search.search(driver, "");
@@ -33,7 +35,7 @@ public class Ejercicio05_Tests extends Test_Config{
 	 * que se muestra la página que corresponde, con la lista de usuarios vacía.
 	 */
 	@Test
-	public void E05_Prueba_13() {
+	public void Prueba_13() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
 		PO_Search.search(driver, "pepe");
@@ -46,7 +48,7 @@ public class Ejercicio05_Tests extends Test_Config{
 	 * especificados sea parte de su nombre, apellidos o de su email.
 	 */
 	@Test
-	public void E05_Prueba_14() {
+	public void Prueba_14() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
 		PO_Search.search(driver, "ma");

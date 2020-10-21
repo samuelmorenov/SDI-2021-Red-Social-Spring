@@ -11,7 +11,7 @@ public class Ejercicio10_Tests extends Test_Config {
 	 * principal/Opciones Principales de Usuario/Listado de Usuarios.
 	 */
 	@Test
-	public void E10_Prueba_20() {
+	public void Prueba_20() {
 		fail("Not yet implemented");
 
 	}

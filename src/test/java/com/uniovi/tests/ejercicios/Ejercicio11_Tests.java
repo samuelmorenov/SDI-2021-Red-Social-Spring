@@ -1,16 +1,20 @@
 package com.uniovi.tests.ejercicios;
 
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.fail;
 
+import org.junit.FixMethodOrder;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio11_Tests extends Test_Config {
 	/**
 	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se
 	 * deberá volver al formulario de login.
 	 */
 	@Test
-	public void E11_Prueba_21() {
+	public void Prueba_21() {
 		fail("Not yet implemented");
 	}
 
@@ -20,7 +24,7 @@ public class Ejercicio11_Tests extends Test_Config {
 	 * login.
 	 */
 	@Test
-	public void E11_Prueba_22() {
+	public void Prueba_22() {
 		fail("Not yet implemented");
 	}
 
@@ -30,7 +34,7 @@ public class Ejercicio11_Tests extends Test_Config {
 	 * cualquiera en el menú). Se deberá indicar un mensaje de acción prohibida.
 	 */
 	@Test
-	public void E11_Prueba_23() {
+	public void Prueba_23() {
 		fail("Not yet implemented");
 	}
 }

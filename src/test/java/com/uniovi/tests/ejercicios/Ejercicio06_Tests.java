@@ -1,6 +1,8 @@
 package com.uniovi.tests.ejercicios;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
@@ -9,6 +11,7 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio06_Tests extends Test_Config {
 
 	/**
@@ -17,7 +20,7 @@ public class Ejercicio06_Tests extends Test_Config {
 	 * listado de invitaciones (punto siguiente).
 	 */
 	@Test
-	public void E06_Prueba_15() {
+	public void Prueba_15() {
 		PO_Invitation.enviarPeticiones(driver);
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(1).email, UserList.usuariosTest(1).password);
@@ -32,7 +35,7 @@ public class Ejercicio06_Tests extends Test_Config {
 	 * enviar invitación o notificar que ya había sido enviada previamente.
 	 */
 	@Test
-	public void E06_Prueba_16() {
+	public void Prueba_16() {
 		PO_Invitation.enviarPeticiones(driver);
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);

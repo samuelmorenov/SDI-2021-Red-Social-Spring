@@ -1,12 +1,15 @@
 package com.uniovi.tests.ejercicios;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio01_Tests extends Test_Config {
 
 	/** Registro de Usuario con datos válidos. */

@@ -9,14 +9,14 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
-public class Ejercicio07_Tests extends Test_Config{
+public class Ejercicio07_Tests extends Test_Config {
 
 	/**
 	 * Mostrar el listado de invitaciones de amistad recibidas. Comprobar con un
 	 * listado que contenga varias invitaciones recibidas.
 	 */
 	@Test
-	public void E07_Prueba_17() {
+	public void Prueba_17() {
 		PO_Invitation.enviarPeticiones(driver);
 		PO_Invitation.enviarPeticiones2(driver);
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");

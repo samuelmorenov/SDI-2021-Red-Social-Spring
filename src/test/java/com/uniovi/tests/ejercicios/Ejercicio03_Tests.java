@@ -1,6 +1,8 @@
 package com.uniovi.tests.ejercicios;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
@@ -8,13 +10,14 @@ import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio03_Tests extends Test_Config {
 	/**
 	 * Hacer click en la opción de salir de sesión y comprobar que se redirige a la
 	 * página de inicio de sesión (Login).
 	 */
 	@Test
-	public void E03_Prueba_09() {
+	public void Prueba_09() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
@@ -28,7 +31,7 @@ public class Ejercicio03_Tests extends Test_Config {
 	 * autenticado.
 	 */
 	@Test
-	public void E03_Prueba_10() {
+	public void Prueba_10() {
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
 	}
 

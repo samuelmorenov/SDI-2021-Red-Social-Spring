@@ -15,7 +15,7 @@ public class Ejercicio08_Tests extends Test_Config {
 	 * invitaciones.
 	 */
 	@Test
-	public void E08_Prueba_18() {
+	public void Prueba_18() {
 		PO_Invitation.enviarPeticiones(driver);
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuariosTest(1).email, UserList.usuariosTest(1).password);

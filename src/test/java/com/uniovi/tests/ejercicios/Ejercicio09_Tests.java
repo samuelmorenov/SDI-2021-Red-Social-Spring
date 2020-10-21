@@ -10,7 +10,7 @@ public class Ejercicio09_Tests extends Test_Config {
 	 * los amigos que deben ser.
 	 */
 	@Test
-	public void E09_Prueba_19() {
+	public void Prueba_19() {
 		fail("Not yet implemented");
 	}
 }
