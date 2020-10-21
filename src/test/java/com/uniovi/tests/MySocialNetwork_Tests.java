@@ -89,9 +89,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_01() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
-				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password);
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
+				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password);
 		espera();
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
@@ -100,9 +100,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_02_1() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, "", UserList.usuariosTest[0].name,
-				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password);
+		PO_RegisterView.fillForm(driver, "", UserList.usuariosTest(0).name,
+				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password);
 		PO_RegisterView.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
 	}
 
@@ -111,8 +111,8 @@ public class MySocialNetwork_Tests {
 	public void E01_Prueba_02_2() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), "",
-				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password);
+				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password);
 		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 	}
 
@@ -120,9 +120,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_02_3() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
-				"", UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password);
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
+				"", UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password);
 		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
 
@@ -132,9 +132,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_03() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest[0].name,
-				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password + "e") ;
+		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
+				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password + "e") ;
 		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 
 	}
@@ -143,9 +143,9 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E01_Prueba_04() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, UserList.usuarios[0].email, UserList.usuariosTest[0].name,
-				UserList.usuariosTest[0].lastName, UserList.usuariosTest[0].password,
-				UserList.usuariosTest[0].password + "e") ;
+		PO_RegisterView.fillForm(driver, UserList.usuarios(0).email, UserList.usuariosTest(0).name,
+				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
+				UserList.usuariosTest(0).password + "e") ;
 		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 	}
 
@@ -153,7 +153,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E02_Prueba_05() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.admins[0].email, UserList.admins[0].password);
+		PO_LoginView.fillForm(driver, UserList.admin.email, UserList.admin.password);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -161,7 +161,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E02_Prueba_06() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuarios[0].email, UserList.usuarios[0].password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
@@ -173,6 +173,7 @@ public class MySocialNetwork_Tests {
 	public void E02_Prueba_07() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, "", "");
+		espera();
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
@@ -183,7 +184,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E02_Prueba_08() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuarios[0].email, "incorrecta");
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, "incorrecta");
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
@@ -194,7 +195,7 @@ public class MySocialNetwork_Tests {
 	@Test
 	public void E03_Prueba_09() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuarios[0].name, UserList.usuarios[0].password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).name, UserList.usuarios(0).password);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 		espera();
 		PO_View.checkElement(driver, "text", "Identifícate");

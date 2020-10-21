@@ -4,46 +4,28 @@ import com.uniovi.services.RolesService;
 
 public class UserList {
 
-	public final static UserDto[] usuarios = getUsuarios();
+	private static RolesService rolesService = new RolesService();
+	public static final int maxUser = 5;
 
-	private static UserDto[] getUsuarios() {
-		RolesService rolesService = new RolesService();
-		UserDto[] list = new UserDto[5];
+	public final static UserDto admin = new UserDto("admin@email.com", "Admin", "Istrador", "admin",
+			rolesService.getRoles()[1]);
+
+	public final static UserDto usuarios(int iterator) {
+		UserDto[] list = new UserDto[maxUser];
 		list[0] = new UserDto("pedro@email.com", "Pedro", "Díaz", "123456", rolesService.getRoles()[0]);
 		list[1] = new UserDto("lucas@email.com", "Lucas", "Núñez", "123456", rolesService.getRoles()[0]);
 		list[2] = new UserDto("maria@email.com", "María", "Rodríguez", "123456", rolesService.getRoles()[0]);
 		list[3] = new UserDto("marta@email.com", "Marta", "Almonte", "123456", rolesService.getRoles()[0]);
 		list[4] = new UserDto("pelayo@email.com", "Pelayo", "Valdes", "123456", rolesService.getRoles()[0]);
-		return list;
+		return list[iterator];
 	}
 
-	public final static UserDto[] usuariosTest = getUsuariosTest();
-
-	private static UserDto[] getUsuariosTest() {
-		RolesService rolesService = new RolesService();
+	public final static UserDto usuariosTest(int iterator) {
 		UserDto[] list = new UserDto[2];
 		list[0] = new UserDto("liliana@email.com", "Liliana", "Gomez", "123456", rolesService.getRoles()[0]);
 		list[1] = new UserDto("florentina@email.com", "Florentina", "Azul", "123456", rolesService.getRoles()[0]);
 
-		return list;
+		return list[iterator];
 	}
-
-	public final static UserDto[] admins = getAdmins();
-
-	private static UserDto[] getAdmins() {
-		RolesService rolesService = new RolesService();
-		UserDto[] list = new UserDto[1];
-		list[0] = new UserDto("edward@email.com", "Edward", "Núñez", "123456", rolesService.getRoles()[1]);
-		return list;
-	}
-
-//	public final static UserDto[] adminTest = getAdminTest();
-//
-//	private static UserDto[] getAdminTest() {
-//		RolesService rolesService = new RolesService();
-//		UserDto[] list = new UserDto[1];
-//		list[0] = new UserDto("admin@email.com", "Admin", "Admin", "adminc", rolesService.getRoles()[1]);
-//		return list;
-//	}
 
 }

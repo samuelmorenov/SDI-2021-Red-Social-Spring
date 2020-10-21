@@ -16,22 +16,18 @@ public class InsertSampleDataService {
 
 	@PostConstruct
 	public void init() {
-		
-		for (int i = 0; i < UserList.usuarios.length; i++) {
-			User user = new User(UserList.usuarios[i].email, UserList.usuarios[i].name, UserList.usuarios[i].lastName);
-			user.setPassword(UserList.usuarios[i].password);
-			user.setRole(UserList.usuarios[i].role);
-			usersService.addUser(user);
-		}
-		for (int i = 0; i < UserList.admins.length; i++) {
-			User user = new User(UserList.admins[i].email, UserList.admins[i].name, UserList.admins[i].lastName);
-			user.setPassword(UserList.admins[i].password);
-			user.setRole(UserList.admins[i].role);
-			usersService.addUser(user);
-		}
-		
-		
 
+		for (int i = 0; i < UserList.maxUser; i++) {
+			User user = new User(UserList.usuarios(i).email, UserList.usuarios(i).name, UserList.usuarios(i).lastName);
+			user.setPassword(UserList.usuarios(i).password);
+			user.setRole(UserList.usuarios(i).role);
+			usersService.addUser(user);
+		}
+
+		User user = new User(UserList.admin.email, UserList.admin.name, UserList.admin.lastName);
+		user.setPassword(UserList.admin.password);
+		user.setRole(UserList.admin.role);
+		usersService.addUser(user);
 
 	}
 }
