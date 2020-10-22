@@ -21,13 +21,12 @@ public class Ejercicio05_Tests extends Test_Config {
 	@Test
 	public void Prueba_12() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_Search.search(driver, "");
-		PO_View.checkElement(driver, "text", "lucas@email.com");
-		PO_View.checkElement(driver, "text", "maria@email.com");
-		PO_View.checkElement(driver, "text", "marta@email.com");
-		PO_View.checkElement(driver, "text", "pelayo@email.com");
-		PO_View.checkElement(driver, "text", "k@email.com");
+		PO_View.checkElement(driver, "text", UserList.usuarios(1).email);
+		PO_View.checkElement(driver, "text", UserList.usuarios(2).email);
+		PO_View.checkElement(driver, "text", UserList.usuarios(3).email);
+		PO_View.checkElement(driver, "text", UserList.usuarios(4).email);
 	}
 
 	/**
@@ -37,8 +36,9 @@ public class Ejercicio05_Tests extends Test_Config {
 	@Test
 	public void Prueba_13() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
-		PO_Search.search(driver, "pepe");
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_Search.search(driver, "textoInexistente");
+		espera(); //TODO: Falla
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "@email", PO_View.getTimeout());
 	}
 
@@ -50,7 +50,7 @@ public class Ejercicio05_Tests extends Test_Config {
 	@Test
 	public void Prueba_14() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_Search.search(driver, "ma");
 		PO_View.checkElement(driver, "text", "maria@email.com");
 		PO_View.checkElement(driver, "text", "marta@email.com");
