@@ -37,7 +37,6 @@ public class Ejercicio02_Tests extends Test_Config {
 	public void Prueba_07() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, "", "");
-		espera();
 		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
