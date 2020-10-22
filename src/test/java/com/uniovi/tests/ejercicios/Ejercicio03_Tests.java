@@ -7,6 +7,7 @@ import org.junit.runners.MethodSorters;
 import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
@@ -21,9 +22,7 @@ public class Ejercicio03_Tests extends Test_Config {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
-		espera();
-		PO_View.checkElement(driver, "text", "Identifícate");
-		// TODO Cambiar texto a internacionalizado
+		PO_View.checkKey(driver, "login.message", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -32,6 +31,9 @@ public class Ejercicio03_Tests extends Test_Config {
 	 */
 	@Test
 	public void Prueba_10() {
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
 	}
 

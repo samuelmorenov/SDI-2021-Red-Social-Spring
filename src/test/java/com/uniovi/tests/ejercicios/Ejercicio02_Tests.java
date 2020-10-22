@@ -8,7 +8,7 @@ import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
-import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio02_Tests extends Test_Config {
@@ -18,7 +18,7 @@ public class Ejercicio02_Tests extends Test_Config {
 	public void Prueba_05() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.admin.email, UserList.admin.password);
-		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Inicio de sesión con datos válidos (usuario estándar) */
@@ -26,7 +26,7 @@ public class Ejercicio02_Tests extends Test_Config {
 	public void Prueba_06() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
-		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Ejercicio02_Tests extends Test_Config {
 	public void Prueba_07() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, "", "");
-		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Ejercicio02_Tests extends Test_Config {
 	public void Prueba_08() {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, "incorrecta");
-		PO_RegisterView.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.login", PO_Properties.getSPANISH());
 	}
 
 }

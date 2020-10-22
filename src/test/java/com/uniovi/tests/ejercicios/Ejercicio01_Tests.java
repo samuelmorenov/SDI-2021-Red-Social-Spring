@@ -8,6 +8,7 @@ import com.uniovi.services.data.UserList;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio01_Tests extends Test_Config {
@@ -19,8 +20,7 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
 				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password);
-		espera();
-		PO_RegisterView.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: email vacío */
@@ -29,7 +29,7 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, "", UserList.usuariosTest(0).name, UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
-		PO_RegisterView.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: nombre vacío */
@@ -38,7 +38,7 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), "", UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
-		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 	}
 
 	/** Registro de Usuario con datos inválidos: apellidos vacío */
@@ -47,7 +47,7 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name, "",
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
-		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
 				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password + "e");
-		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
 
 	}
 
@@ -70,6 +70,6 @@ public class Ejercicio01_Tests extends Test_Config {
 		PO_RegisterView.fillForm(driver, UserList.usuarios(0).email, UserList.usuariosTest(0).name,
 				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password + "e");
-		PO_RegisterView.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "Error.signup.email.duplicate", PO_Properties.getSPANISH());
 	}
 }
