@@ -43,24 +43,14 @@ public class UsersController {
 
 	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Autowired
 	private InvitationsService invitationsService;
 
-	@RequestMapping(value = "/login")//, method = RequestMethod.GET)
-	public String login_GET(Model model) {
+	@RequestMapping(value = "/login") // , method = RequestMethod.GET)
+	public String login(Model model) {
 		return "login";
 	}
-
-
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String login_POST(@Validated User user, BindingResult result, Model model) {
-//		signUpFormValidator.validate(user, result);
-//		if (result.hasErrors()) {
-//			return "login";
-//		}
-//		return "redirect:home";
-//	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup_GET(Model model) {
@@ -121,18 +111,33 @@ public class UsersController {
 	@RequestMapping("/user/list")
 	public String user_list(Model model, Pageable pageable, Principal principal,
 			@RequestParam(value = "", required = false) String searchText) {
-		this.list(model, pageable, principal, searchText);
+
+		// Set active user
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		httpSession.setAttribute("currentlyUser", activeUser);
+
+		// Paginacion y busqueda
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
+		if (searchText != null && !searchText.isEmpty()) {
+			users = usersService.searchByNameAndLastname(pageable, searchText);
+		} else {
+			users = usersService.getUsers(pageable);
+		}
+
+		// Añadir elementos al modelo
+
+		model.addAttribute("usersList", users.getContent());
+		model.addAttribute("page", users);
+
+		// Set lista de invitaciones
+		List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
+		model.addAttribute("usersWithInvitation", userList);
 		return "user/list";
 	}
 
-// TODO Cambiar index a list o redirigir a login
-//	@RequestMapping("/")
-//	public String index(Model model, Pageable pageable, Principal principal,
-//			@RequestParam(value = "", required = false) String searchText) {
-//		this.list(model, pageable, principal, searchText);
-//		return "user/list";
-//	}
-//	
+	// TODO? Cambiar index a list o redirigir a login
 	@RequestMapping("/")
 	public String index() {
 		return "index";
@@ -141,26 +146,7 @@ public class UsersController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String home(Model model, Pageable pageable, Principal principal,
 			@RequestParam(value = "", required = false) String searchText) {
-		this.list(model, pageable, principal, searchText);
-		return "user/list";
-	}
-
-	private void list(Model model, Pageable pageable, Principal principal, String searchText) {
-		// Set active user
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = auth.getName();
-		User activeUser = usersService.getUserByEmail(email);
-		httpSession.setAttribute("currentlyUser", activeUser);
-
-		// Paginacion
-		Page<User> users = new PageImpl<User>(new LinkedList<User>());
-		users = usersService.getUsers(pageable);
-		model.addAttribute("usersList", users.getContent());
-		model.addAttribute("page", users);
-
-		// Set lista de invitaciones
-		List<User> userList = invitationsService.getUsersWithInvitation(activeUser);
-		model.addAttribute("usersWithInvitation", userList);
+		return user_list(model, pageable, principal, searchText);
 	}
 
 }
