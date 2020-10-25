@@ -22,7 +22,7 @@ public class Ejercicio06_Tests extends BaseTests {
 	@Test
 	public void Prueba_15() {
 		//Enviar peticion
-		PO_Invitation.enviarPeticiones(driver, 0, 1);
+		PO_Invitation.enviarPeticion(driver, 0, 1);
 		//Comprobar que existe
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(1).email, UserList.usuarios(1).password);
@@ -39,7 +39,7 @@ public class Ejercicio06_Tests extends BaseTests {
 	@Test
 	public void Prueba_16() {
 		//Enviar peticion
-		PO_Invitation.enviarPeticiones(driver, 0, 1);
+		PO_Invitation.enviarPeticion(driver, 0, 1);
 		//Comprobar que no se puede volver a enviar
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);

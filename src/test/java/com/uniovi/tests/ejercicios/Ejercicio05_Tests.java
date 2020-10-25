@@ -51,6 +51,7 @@ public class Ejercicio05_Tests extends BaseTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_Search.search(driver, "ma");
+		//TODO: aqui estan puesto los email a pelo
 		PO_View.checkElement(driver, "text", "maria@email.com");
 		PO_View.checkElement(driver, "text", "marta@email.com");
 	}

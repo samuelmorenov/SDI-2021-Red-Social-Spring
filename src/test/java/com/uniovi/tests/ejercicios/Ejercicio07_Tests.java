@@ -17,8 +17,8 @@ public class Ejercicio07_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_17() {
-		PO_Invitation.enviarPeticiones(driver, 0, 2);
-		PO_Invitation.enviarPeticiones(driver, 1, 2);
+		PO_Invitation.enviarPeticion(driver, 0, 2);
+		PO_Invitation.enviarPeticion(driver, 1, 2);
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(2).email, UserList.usuarios(2).password);
 		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
