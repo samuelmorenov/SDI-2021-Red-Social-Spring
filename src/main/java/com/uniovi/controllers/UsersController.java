@@ -136,6 +136,13 @@ public class UsersController {
 		model.addAttribute("usersWithInvitation", userList);
 		return "user/list";
 	}
+	
+	@RequestMapping(value = "/user/send", method = RequestMethod.POST)
+	public String user_send_POST(@RequestParam Long receptorId, Model model, Principal principal) {
+		User emisor = (User) httpSession.getAttribute("currentlyUser");
+		invitationsService.sendInvitation(emisor, receptorId);
+		return "redirect:/user/list";
+	}
 
 	// TODO? Cambiar index a list o redirigir a login
 	@RequestMapping("/")
