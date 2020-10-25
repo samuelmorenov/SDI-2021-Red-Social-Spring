@@ -21,11 +21,13 @@ public class Ejercicio06_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_15() {
-		PO_Invitation.enviarPeticiones(driver);
+		//Enviar peticion
+		PO_Invitation.enviarPeticiones(driver, UserList.usuarios(0), "sendButton2");
+		//Comprobar que existe
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuariosTest(1).email, UserList.usuariosTest(1).password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(1).email, UserList.usuarios(1).password);
 		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
-		PO_View.checkElement(driver, "text", "Pedro");
+		PO_View.checkElement(driver, "text", UserList.usuarios(0).name);
 	}
 
 	/**
@@ -36,9 +38,11 @@ public class Ejercicio06_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_16() {
-		PO_Invitation.enviarPeticiones(driver);
+		//Enviar peticion
+		PO_Invitation.enviarPeticiones(driver, UserList.usuarios(0), "sendButton2");
+		//Comprobar que no se puede volver a enviar
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuariosTest(0).email, UserList.usuariosTest(0).password);
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_HomeView.noEsClickable(driver, "sendButton2");
 	}
 
