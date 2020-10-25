@@ -12,7 +12,7 @@ import com.uniovi.tests.pageobjects.PO_View;
 import com.uniovi.tests.util.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Ejercicio03_Tests extends Test_Config {
+public class Ejercicio03_Tests extends BaseTests {
 	/**
 	 * Hacer click en la opción de salir de sesión y comprobar que se redirige a la
 	 * página de inicio de sesión (Login).

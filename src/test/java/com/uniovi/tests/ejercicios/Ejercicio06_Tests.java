@@ -12,7 +12,7 @@ import com.uniovi.tests.pageobjects.PO_PrivateView;
 import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Ejercicio06_Tests extends Test_Config {
+public class Ejercicio06_Tests extends BaseTests {
 
 	/**
 	 * Desde el listado de usuarios de la aplicación, enviar una invitación de

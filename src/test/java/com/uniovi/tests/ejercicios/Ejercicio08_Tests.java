@@ -8,7 +8,7 @@ import com.uniovi.tests.pageobjects.PO_Invitation;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
 
-public class Ejercicio08_Tests extends Test_Config {
+public class Ejercicio08_Tests extends BaseTests {
 	/**
 	 * Sobre el listado de invitaciones recibidas. Hacer click en el botón/enlace de
 	 * una de ellas y comprobar que dicha solicitud desaparece del listado de

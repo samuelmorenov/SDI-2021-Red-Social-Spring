@@ -1,9 +1,10 @@
 package com.uniovi.tests.ejercicios;
 
-import org.junit.Test;
 import static org.junit.Assert.fail;
 
-public class Ejercicio10_Tests extends Test_Config {
+import org.junit.Test;
+
+public class Ejercicio10_Tests extends BaseTests {
 
 	/**
 	 * Visualizar al menos cuatro páginas en Español/Inglés/Español (comprobando que

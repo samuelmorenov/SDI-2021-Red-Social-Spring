@@ -11,13 +11,17 @@ import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Ejercicio01_Tests extends Test_Config {
+public class Ejercicio01_Tests extends BaseTests {
+	
+	private static String randomEmail() {
+		return "correo" + Integer.toString((int) (100000 * Math.random())) + "@email.es";
+	}
 
 	/** Registro de Usuario con datos válidos. */
 	@Test
 	public void Prueba_01() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
+		PO_RegisterView.fillForm(driver, randomEmail(), UserList.usuariosTest(0).name,
 				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password);
 		PO_View.checkKey(driver, "list.intro", PO_Properties.getSPANISH());
@@ -36,7 +40,7 @@ public class Ejercicio01_Tests extends Test_Config {
 	@Test
 	public void Prueba_02_b() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), "", UserList.usuariosTest(0).lastName,
+		PO_RegisterView.fillForm(driver, randomEmail(), "", UserList.usuariosTest(0).lastName,
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
 		PO_View.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
 	}
@@ -45,7 +49,7 @@ public class Ejercicio01_Tests extends Test_Config {
 	@Test
 	public void Prueba_02_c() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name, "",
+		PO_RegisterView.fillForm(driver, randomEmail(), UserList.usuariosTest(0).name, "",
 				UserList.usuariosTest(0).password, UserList.usuariosTest(0).password);
 		PO_View.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
 	}
@@ -56,7 +60,7 @@ public class Ejercicio01_Tests extends Test_Config {
 	@Test
 	public void Prueba_03() {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_RegisterView.fillForm(driver, correoRandom(), UserList.usuariosTest(0).name,
+		PO_RegisterView.fillForm(driver, randomEmail(), UserList.usuariosTest(0).name,
 				UserList.usuariosTest(0).lastName, UserList.usuariosTest(0).password,
 				UserList.usuariosTest(0).password + "e");
 		PO_View.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());

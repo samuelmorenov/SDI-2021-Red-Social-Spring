@@ -1,14 +1,13 @@
 package com.uniovi.tests.ejercicios;
 
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
-
 import static org.junit.Assert.fail;
 
 import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Ejercicio11_Tests extends Test_Config {
+public class Ejercicio11_Tests extends BaseTests {
 	/**
 	 * Intentar acceder sin estar autenticado a la opción de listado de usuarios. Se
 	 * deberá volver al formulario de login.
