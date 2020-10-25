@@ -27,8 +27,7 @@ public class BaseTests {
 	}
 
 	// TO-DO: Comprobar que no se usa y borrar antes de entregar
-	@SuppressWarnings("unused")
-	protected void espera() {
+	protected void espera3() {
 		espera(3);
 	}
 

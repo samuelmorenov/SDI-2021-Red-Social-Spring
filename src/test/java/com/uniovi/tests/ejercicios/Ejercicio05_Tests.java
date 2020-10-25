@@ -38,7 +38,6 @@ public class Ejercicio05_Tests extends BaseTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_Search.search(driver, "textoInexistente");
-		espera(); //TODO: Falla
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "@email", PO_View.getTimeout());
 	}
 
