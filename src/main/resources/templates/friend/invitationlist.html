@@ -22,23 +22,21 @@
 						<td>
 							<button
 							type="button"
-							th:id="${'acceptButton' + invitation.emisor.name}"
-							th:onclick="'javascript:aceptar();'"
-							class="btn btn-default"
-							>
+							th:id="${'acceptButton' + invitation.emisor.email}"
+							th:onclick="javascript:aceptar([[${invitation.id}]]);"
+							class="btn btn-default">
 							Aceptar
 							</button>
-							<script th:inline="javascript">
-							/*<![CDATA[*/
-								function aceptar() {
-									var invitation = [[${invitation.id}]];
-									$.post("/friend/accept",{"InvitationId" : invitation});
-									$("#invitation[[${invitation.id}]]").remove();
-								}
-							/*]]>*/
-							</script>
 						</td>
 					</tr>
+					<script th:inline="javascript">
+					/*<![CDATA[*/
+						function aceptar(inv) {
+							$.post("/friend/accept",{"InvitationId" : inv});
+						}
+					/*]]>*/
+					</script>
+					<!-- $("#invitation[[${inv}]]").remove(); -->
 				</tbody>
 			</table>
 		</div>
