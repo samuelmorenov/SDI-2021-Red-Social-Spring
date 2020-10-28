@@ -23,6 +23,6 @@ public class Ejercicio08_Tests extends BaseTests {
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_PrivateView.accederPagina(driver, "friends-menu", "/friend/invitationlist");
 		PO_HomeView.clickId(driver, "acceptButton" + amigo);
-		//SeleniumUtils.EsperaCargaPaginaNoTexto(driver, amigo, PO_View.getTimeout());
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, amigo, PO_View.getTimeout());
 	}
 }
