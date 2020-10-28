@@ -33,10 +33,11 @@
 					/*<![CDATA[*/
 						function aceptar(inv) {
 							$.post("/friend/accept",{"InvitationId" : inv});
+							document.getElementById("invitation"+inv).remove();
 						}
 					/*]]>*/
 					</script>
-					<!-- $("#invitation[[${inv}]]").remove(); -->
+					
 				</tbody>
 			</table>
 		</div>
