@@ -28,7 +28,7 @@ public class FriendController {
 
 	@Autowired
 	private UsersService usersService;
-	
+
 	@Autowired
 	private FriendService friendService;
 
@@ -39,7 +39,7 @@ public class FriendController {
 	private HttpSession httpSession;
 
 	@RequestMapping("/friend/invitationlist")
-	public String getListado(Model model, Pageable pageable, Principal principal) {
+	public String friend_invitationlist(Model model, Pageable pageable, Principal principal) {
 		// Set active user
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
@@ -56,8 +56,8 @@ public class FriendController {
 	}
 
 	@RequestMapping(value = "/friend/accept", method = RequestMethod.POST)
-	public String acceptRequest(@RequestParam Long InvitationId, Model model,
-			Principal principal) {
+	public String friend_accept_POST(@RequestParam Long InvitationId, Model model, Principal principal) {
+
 		Invitation invitation = invitationsService.getInvitationById(InvitationId);
 		invitation.setAceptada(true);
 		invitationsService.update(invitation);
@@ -73,9 +73,9 @@ public class FriendController {
 
 		return "redirect:/friend/invitationlist";
 	}
-	
+
 	@RequestMapping(value = { "/friend/friendlist" }, method = RequestMethod.GET)
-	public String getFriends(Model model, Pageable pageable, Principal principal) {
+	public String friend_friendlist(Model model, Pageable pageable, Principal principal) {
 
 		// Set active user
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -89,7 +89,6 @@ public class FriendController {
 		model.addAttribute("friendList", amigos.getContent());
 		model.addAttribute("page", amigos);
 
-		
 		return "/friend/friendlist";
 
 	}

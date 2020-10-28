@@ -15,25 +15,40 @@
 					</tr>
 				</thead>
 				<tbody>
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						function aceptar(id) {
+   							alert(id);
+						}
+						/*]]>*/
+					</script>
+					
+					<!-- 
+					/*<![CDATA[*/
+					$( "#acceptButton[[${invitation.id}]]" ).click(
+						function() {
+							var friend = [[${invitation.emisor.id}]];
+							var invitation = [[${invitation.id}]];
+							$.post("/friend/accept",{"InvitationId" : invitation});
+							$("#acceptButton[[${invitation.id}]]").remove();
+						}
+					); 
+					/*]]>*/
+					 -->
+							
 					<tr th:each="invitation : ${invitationList}"
-						th:id="${'invitation' + invitation.emisor.id}">
-						<td th:text="${invitation.emisor.name}">Nombre del alumno</td>
-
+						th:id="${'invitation' + invitation.emisor.email}">
+						<td th:text="${invitation.emisor.name}">Nombre</td>
+						<td th:text="${invitation.emisor.email}">Email</td>
 						<td>
-							<button type="button" th:id="${'acceptButton' + invitation.id}"
-								class="btn btn-default">Aceptar</button> <script
-								th:inline="javascript"> 
-							/*<![CDATA[*/
-							$( "#acceptButton[[${invitation.id}]]" ).click(
-								function() {
-									var friend = [[${invitation.emisor.id}]];
-									var invitation = [[${invitation.id}]];
-									$.post("/friend/accept",{"InvitationId" : invitation});
-									$("#acceptButton[[${invitation.id}]]").remove();
-								}
-							); 
-							/*]]>*/
-							</script>
+							<button
+							type="button"
+							th:id="${'acceptButton' + invitation.emisor.name}"
+							th:onclick="'javascript:aceptar(\''+ ${invitation.id} +'\');'"
+							class="btn btn-default"
+							>
+							Aceptar
+							</button>
 						</td>
 					</tr>
 				</tbody>
