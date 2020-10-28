@@ -144,7 +144,6 @@ public class UsersController {
 		return "redirect:/user/list";
 	}
 
-	// TODO? Cambiar index a list o redirigir a login
 	@RequestMapping("/")
 	public String index() {
 		return "index";

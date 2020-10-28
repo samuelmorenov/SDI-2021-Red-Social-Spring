@@ -26,7 +26,7 @@ public class BaseTests {
 
 	}
 
-	// TODO: Comprobar que no se usa y borrar antes de entregar
+	// TO-DO: Comprobar que no se usa y borrar antes de entregar
 	protected void espera(int n) {
 		SeleniumUtils.esperarSegundos(driver, n);
 	}
