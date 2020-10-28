@@ -12,9 +12,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
+import com.uniovi.services.RolesService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	//TODO: Renombrar a Role0 y Role1
+	private  String User = RolesService.getRoles()[0];
+	private  String Admin = RolesService.getRoles()[1];
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -32,14 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			//TO-DO: Comprobar permisos
-//			.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
-//			.antMatchers("/mark/add").hasAuthority("ROLE_PROFESSOR")
-//			.antMatchers("/mark/edit/*").hasAuthority("ROLE_PROFESSOR")
-//			.antMatchers("/mark/delete/*").hasAuthority("-ROLE_PROFESSOR")
-//			.antMatchers("/mark/**").hasAnyAuthority("ROLE_STUDENT","ROLE_PROFESSOR","ROLE_ADMIN")
-//			.antMatchers("/user/**").hasAnyAuthority("ROLE_ADMIN")
-//			.anyRequest().authenticated()
+			//TODO: Comprobar permisos
+			.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
+			.antMatchers("/user/add").hasAuthority(Admin)
+			.antMatchers("/friend/friendlist").hasAnyAuthority(User, Admin)
+			.anyRequest().authenticated()
 				.and()
 		.formLogin()
 			.loginPage("/login")

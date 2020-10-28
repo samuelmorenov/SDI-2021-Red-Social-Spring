@@ -6,8 +6,7 @@ public class UserList {
 
 	public static final int maxUser = 5;
 
-	// TO-DO: En la entrega final el correo es admin@email.com
-	public final static UserDto admin = new UserDto("admin", "Admin", "Istrador", "admin", RolesService.getRoles()[1]);
+	public final static UserDto admin = new UserDto("admin@email.com", "Admin", "Istrador", "admin", RolesService.getRoles()[1]);
 
 	public final static UserDto usuarios(int iterator) {
 		UserDto[] list = new UserDto[maxUser];
