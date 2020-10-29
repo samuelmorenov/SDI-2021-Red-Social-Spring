@@ -1,8 +1,11 @@
 package com.uniovi.tests.ejercicios;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
+
+import com.uniovi.services.data.UserList;
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_Language;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 
 public class Ejercicio10_Tests extends BaseTests {
 
@@ -13,8 +16,17 @@ public class Ejercicio10_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_20() {
-		fail("Not yet implemented");
-
+		//HOME
+		PO_Language.checkChangeIdiom(driver, "login.message");
+		//Signup
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		PO_Language.checkChangeIdiom(driver, "signup.pass2", "signup.message");
+		//Login
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_Language.checkChangeIdiom(driver, "login.login", "login.message");
+		//Usuarios
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_Language.checkChangeIdiom(driver, "list.title", "list.intro");
 	}
-
 }
