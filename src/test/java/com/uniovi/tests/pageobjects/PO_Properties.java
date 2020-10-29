@@ -12,11 +12,16 @@ public class PO_Properties {
 	public static int getENGLISH() {
 		return ENGLISH;
 	}
+	
+	public static int getRUSSIAN() {
+		return RUSSIAN;
+	}
 
 	private String Path;
 	static int SPANISH = 0;
 	static int ENGLISH = 1;	
-	static Locale[] idioms = new Locale[] {new Locale("ES"), new Locale("EN")};
+	static int RUSSIAN = 2;
+	static Locale[] idioms = new Locale[] {new Locale("ES"), new Locale("EN"), new Locale("RU")};
 	//static Properties p = new Properties();
 	public PO_Properties(String Path) //throws FileNotFoundException, IOException 
 	{
