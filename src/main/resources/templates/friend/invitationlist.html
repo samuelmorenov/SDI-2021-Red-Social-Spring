@@ -4,12 +4,12 @@
 <body>
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Lista de peticiones</h2>
+		<h2 th:text="#{invitationlist.title}"></h2>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Nombre</th>
+						<th th:text="#{common.user.nombre}"></th>
 						<th class="col-md-1"></th>
 
 					</tr>
@@ -17,15 +17,15 @@
 				<tbody>
 					<tr th:each="invitation : ${invitationList}"
 						th:id="${'invitation' + invitation.id}">
-						<td th:text="${invitation.emisor.name}">Nombre</td>
-						<td th:text="${invitation.emisor.email}">Email</td>
+						<td th:text="${invitation.emisor.name}"></td>
+						<td th:text="${invitation.emisor.email}"></td>
 						<td>
 							<button
 							type="button"
 							th:id="${'acceptButton' + invitation.emisor.email}"
 							th:onclick="javascript:aceptar([[${invitation.id}]]);"
-							class="btn btn-default">
-							Aceptar
+							class="btn btn-default"
+							th:text="#{invitationlist.button.aceptar}">
 							</button>
 						</td>
 					</tr>

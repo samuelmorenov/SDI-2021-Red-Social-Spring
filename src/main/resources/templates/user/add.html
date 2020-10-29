@@ -5,11 +5,11 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Agregar usuario</h2>
+		<h2 th:text="#{add.title}"></h2>
 
 		<form class="form-horizontal" method="post" action="/user/add">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="role">Role:</label>
+				<label class="control-label col-sm-2" for="role" th:text="#{add.role}"></label>
 				<div class="col-sm-10">
 					<select id="role" class="form-control" name="role">
 						<option th:each="role : ${rolesList}" th:value="${role}"
@@ -18,36 +18,36 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Email:</label>
+				<label class="control-label col-sm-2" for="email" th:text="#{common.user.email}"></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="email"
-						placeholder="99999999Y" required="true" />
+						th:placeholder="#{common.placeholder.email}" required="true" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="name">Nombre:</label>
+				<label class="control-label col-sm-2" for="name" th:text="#{common.user.nombre}"></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="name"
-						placeholder="Ejemplo: Juan" required="true" />
+						th:placeholder="#{common.placeholder.nombre}" required="true" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastName">Apellidos:</label>
+				<label class="control-label col-sm-2" for="lastName" th:text="#{common.user.apellidos}"></label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="lastName"
-						placeholder="Ejemplo: Peréz Almonte" required="true" />
+						th:placeholder="#{common.placeholder.apellidos}" required="true" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="password">Password:</label>
+				<label class="control-label col-sm-2" for="password" th:text="#{common.user.pass}"></label>
 				<div class="col-sm-10">
 					<input type="password" class="form-control" name="password"
-						placeholder="Introduzca el Password" />
+						th:placeholder="#{common.placeholder.pass}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" class="btn btn-primary" th:text="#{add.button.enviar}"></button>
 				</div>
 			</div>
 		</form>

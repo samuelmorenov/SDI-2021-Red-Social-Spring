@@ -5,19 +5,19 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Detalles del usuario</h2>
+		<h2 th:text="#{details.title}"></h2>
 
 		<div class="panel panel-default">
-			<div class="panel-heading">Email</div>
-			<div class="panel-body" th:text="${user.email}">Email</div>
+			<div class="panel-heading" th:text="#{common.user.email}"></div>
+			<div class="panel-body" th:text="${user.email}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Nombre</div>
-			<div class="panel-body" th:text="${user.name}">Nombre</div>
+			<div class="panel-heading" th:text="#{common.user.nombre}"></div>
+			<div class="panel-body" th:text="${user.name}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Apellido</div>
-			<div class="panel-body" th:text="${user.lastName}">Apellido</div>
+			<div class="panel-heading" th:text="#{common.user.apellidos}"></div>
+			<div class="panel-body" th:text="${user.lastName}"></div>
 		</div>
 	</div>
 	<footer th:replace="fragments/footer" />

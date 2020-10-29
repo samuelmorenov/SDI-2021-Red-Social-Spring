@@ -5,35 +5,35 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Editar Profesor</h2>
+		<h2 th:text="#{edit.title}"></h2>
 		<form class="form-horizontal" method="post"
 			th:action="${'/user/edit/' + user.id}">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="description">Email:</label>
+				<label class="control-label col-sm-2" for="description" th:text="#{common.user.email}"></label>
 				<div class="col-sm-10">
 					<input th:value="${user.email}" type="text" class="form-control"
-						name="email" placeholder="Ejemplo 12345678Z" required="true" />
+						name="email" th:placeholder="#{common.placeholder.email}" required="true" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="description">Nombre:</label>
+				<label class="control-label col-sm-2" for="description" th:text="#{common.user.nombre}"></label>
 				<div class="col-sm-10">
 					<input th:value="${user.name}" type="text"
-						class="form-control" name="name" placeholder="Ejemplo Antonio"
+						class="form-control" name="name" th:placeholder="#{common.placeholder.nombre}"
 						required="true" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="description">Apellidos:</label>
+				<label class="control-label col-sm-2" for="description" th:text="#{common.user.apellidos}"></label>
 				<div class="col-sm-10">
 					<input th:value="${user.lastName}" type="text"
-						class="form-control" name="lastName" placeholder="Ejemplo Montes"
+						class="form-control" name="lastName" th:placeholder="#{common.placeholder.apellidos}"
 						required="true" />
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Modificar</button>
+					<button type="submit" class="btn btn-primary" th:text="#{edit.button.modificar}"></button>
 				</div>
 			</div>
 		</form>
