@@ -11,7 +11,7 @@ public class BaseTests {
 
 	static WebDriver driver = DriverSingleton.getDriver();
 
-	private static String URL = "http://localhost:8090";
+	protected static String URL = "http://localhost:8090";
 
 	// Antes de cada prueba se navega al URL home de la aplicaciónn
 	@Before

@@ -6,6 +6,12 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.uniovi.services.data.UserList;
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_View;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio11_Tests extends BaseTests {
 	/**
@@ -14,7 +20,9 @@ public class Ejercicio11_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_21() {
-		fail("Not yet implemented");
+		driver.navigate().to(URL + "/user/list");
+		PO_View.checkKey(driver, "login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey(driver, "list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -24,7 +32,9 @@ public class Ejercicio11_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_22() {
-		fail("Not yet implemented");
+		driver.navigate().to(URL + "/friend/invitationlist");
+		PO_View.checkKey(driver, "login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey(driver, "invitationlist.title", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -34,6 +44,10 @@ public class Ejercicio11_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_23() {
-		fail("Not yet implemented");
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
+		driver.navigate().to(URL + "/user/add");
+		PO_View.checkKey(driver, "prohibitedaction.message", PO_Properties.getSPANISH());
+		PO_View.checkNoKey(driver, "add.title", PO_Properties.getSPANISH());
 	}
 }
