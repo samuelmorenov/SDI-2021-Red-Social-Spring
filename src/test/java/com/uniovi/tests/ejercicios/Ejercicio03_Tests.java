@@ -9,7 +9,6 @@ import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_View;
-import com.uniovi.tests.util.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Ejercicio03_Tests extends BaseTests {
@@ -34,7 +33,7 @@ public class Ejercicio03_Tests extends BaseTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
-		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "logout", PO_View.getTimeout());
+		PO_View.checkNoKey(driver, "logout.message", PO_Properties.getSPANISH());
 	}
 
 }
