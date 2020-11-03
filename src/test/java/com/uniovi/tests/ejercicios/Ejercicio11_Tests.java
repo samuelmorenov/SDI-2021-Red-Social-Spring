@@ -1,7 +1,5 @@
 package com.uniovi.tests.ejercicios;
 
-import static org.junit.Assert.fail;
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
