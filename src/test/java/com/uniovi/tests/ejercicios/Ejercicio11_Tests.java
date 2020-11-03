@@ -45,7 +45,7 @@ public class Ejercicio11_Tests extends BaseTests {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
 		driver.navigate().to(URL + "/user/add");
-		PO_View.checkKey(driver, "prohibitedaction.message", PO_Properties.getSPANISH());
+		PO_View.checkKey(driver, "forbidden.message", PO_Properties.getSPANISH());
 		PO_View.checkNoKey(driver, "add.title", PO_Properties.getSPANISH());
 	}
 }

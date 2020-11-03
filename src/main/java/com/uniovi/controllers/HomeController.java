@@ -54,8 +54,8 @@ public class HomeController {
 	}
 
 	@RequestMapping("/403")
-	public String Error403() {
-		return "/prohibitedaction";
+	public String error403() {
+		return "errors/403";
 	}
 
 }
