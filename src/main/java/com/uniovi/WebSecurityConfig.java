@@ -12,10 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
+import com.uniovi.services.RolesService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
+	private String User = RolesService.getRoles()[0];
+	private String Admin = RolesService.getRoles()[1];
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -23,21 +28,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public SpringSecurityDialect securityDialect() {
 		return new SpringSecurityDialect();
 	}
 
+	// /login
+	// /signup
+	// /user/add
+	// /user/details/{id}
+	// /user/edit/{id}
+	// /user/delete/{id}
+	// /user/list
+	// /user/send
+	// /home
+	// /
+	// /friend/invitationlist
+	// /friend/accept
+	// /friend/friendlist
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http.csrf().disable()
 			.authorizeRequests()
-			//TO-DO: Comprobar permisos
 			.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
-//			.antMatchers("/user/add").hasAuthority(Admin)
-//			.antMatchers("/friend/friendlist").hasAnyAuthority(User, Admin)
-//			.anyRequest().authenticated()
+			.antMatchers("/user/list").hasAnyAuthority(User,Admin)
+			.antMatchers("/user/add").hasAuthority(Admin)
+			.antMatchers("/user/details/*").hasAuthority(Admin)
+			.antMatchers("/user/edit/*").hasAuthority(Admin)
+			.antMatchers("/user/delete/*").hasAuthority(Admin)
+			.antMatchers("/user/send").hasAnyAuthority(User,Admin)
+			.antMatchers("/home").hasAnyAuthority(User,Admin)
+			.antMatchers("/friend/invitationlist").hasAnyAuthority(User,Admin)
+			.antMatchers("/friend/accept").hasAnyAuthority(User,Admin)
+			.antMatchers("/friend/friendlist").hasAnyAuthority(User,Admin)
+			.anyRequest().authenticated()
 				.and()
 		.formLogin()
 			.loginPage("/login")
