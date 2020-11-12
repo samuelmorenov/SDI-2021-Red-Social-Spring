@@ -29,14 +29,13 @@ import com.uniovi.services.UsersService;
 public class UsersController {
 
 	@Autowired
-	private UsersService usersService;
-
-	@Autowired
 	private HttpSession httpSession;
 
 	@Autowired
-	private InvitationsService invitationsService;
+	private UsersService usersService;
 
+	@Autowired
+	private InvitationsService invitationsService;
 
 	@RequestMapping(value = "/user/add")
 	public String user_add(Model model) {
@@ -104,7 +103,7 @@ public class UsersController {
 		model.addAttribute("usersWithInvitation", userList);
 		return "user/list";
 	}
-	
+
 	@RequestMapping(value = "/user/send", method = RequestMethod.POST)
 	public String user_send_POST(@RequestParam Long receptorId, Model model, Principal principal) {
 		User emisor = (User) httpSession.getAttribute("currentlyUser");

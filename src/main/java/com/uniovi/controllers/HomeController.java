@@ -17,10 +17,10 @@ import com.uniovi.validators.SignUpFormValidator;
 public class HomeController {
 
 	@Autowired
-	private UsersService usersService;
+	private SecurityService securityService;
 
 	@Autowired
-	private SecurityService securityService;
+	private UsersService usersService;
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
@@ -52,10 +52,4 @@ public class HomeController {
 	public String login(Model model) {
 		return "login";
 	}
-
-	@RequestMapping("/403")
-	public String error403() {
-		return "errors/403";
-	}
-
 }

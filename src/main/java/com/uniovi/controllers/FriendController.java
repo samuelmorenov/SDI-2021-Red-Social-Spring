@@ -27,6 +27,9 @@ import com.uniovi.services.UsersService;
 public class FriendController {
 
 	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
 	private UsersService usersService;
 
 	@Autowired
@@ -34,9 +37,6 @@ public class FriendController {
 
 	@Autowired
 	private InvitationsService invitationsService;
-
-	@Autowired
-	private HttpSession httpSession;
 
 	@RequestMapping("/friend/invitationlist")
 	public String friend_invitationlist(Model model, Pageable pageable, Principal principal) {
