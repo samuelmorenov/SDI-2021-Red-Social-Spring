@@ -17,16 +17,16 @@ public class Ejercicio10_Tests extends BaseTests {
 	@Test
 	public void Prueba_20() {
 		//HOME
-		PO_Language.checkChangeIdiom(driver, "login.message");
+		PO_Language.checkChangeIdiom("login.message");
 		//Signup
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
-		PO_Language.checkChangeIdiom(driver, "signup.pass2", "signup.message");
+		PO_HomeView.clickOption("signup", "class", "btn btn-primary");
+		PO_Language.checkChangeIdiom("signup.pass2", "signup.message");
 		//Login
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_Language.checkChangeIdiom(driver, "login.login", "login.message");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_Language.checkChangeIdiom("login.login", "login.message");
 		//Usuarios
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
-		PO_Language.checkChangeIdiom(driver, "list.title", "list.intro");
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_Language.checkChangeIdiom("list.title", "list.intro");
 	}
 }

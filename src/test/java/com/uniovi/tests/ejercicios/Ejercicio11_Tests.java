@@ -20,8 +20,8 @@ public class Ejercicio11_Tests extends BaseTests {
 	@Test
 	public void Prueba_21() {
 		driver.navigate().to(URL + "/user/list");
-		PO_View.checkKey(driver, "login.login", PO_Properties.getSPANISH());
-		PO_View.checkNoKey(driver, "list.intro", PO_Properties.getSPANISH());
+		PO_View.checkKey("login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey("list.intro", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -32,8 +32,8 @@ public class Ejercicio11_Tests extends BaseTests {
 	@Test
 	public void Prueba_22() {
 		driver.navigate().to(URL + "/friend/invitationlist");
-		PO_View.checkKey(driver, "login.login", PO_Properties.getSPANISH());
-		PO_View.checkNoKey(driver, "invitationlist.title", PO_Properties.getSPANISH());
+		PO_View.checkKey("login.login", PO_Properties.getSPANISH());
+		PO_View.checkNoKey("invitationlist.title", PO_Properties.getSPANISH());
 	}
 
 	/**
@@ -43,12 +43,12 @@ public class Ejercicio11_Tests extends BaseTests {
 	 */
 	@Test
 	public void Prueba_23() {
-		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, UserList.usuarios(0).email, UserList.usuarios(0).password);
+		PO_HomeView.clickOption("login", "class", "btn btn-primary");
+		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
 		driver.navigate().to(URL + "/user/add");
-		SeleniumUtils.textoPresentePagina(driver, "HTTP Status 403 – Forbidden");
+		SeleniumUtils.textoPresentePagina("HTTP Status 403 – Forbidden");
 		//TODO: Check forbidden.message
-		//PO_View.checkKey(driver, "forbidden.message", PO_Properties.getSPANISH());
-		PO_View.checkNoKey(driver, "add.title", PO_Properties.getSPANISH());
+		//PO_View.checkKey("forbidden.message", PO_Properties.getSPANISH());
+		PO_View.checkNoKey("add.title", PO_Properties.getSPANISH());
 	}
 }
