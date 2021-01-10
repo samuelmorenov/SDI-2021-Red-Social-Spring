@@ -19,6 +19,7 @@ public class DriverSingleton {
 	}
 
 	public static WebDriver getDriver() {
+		if (driver == null) setDriver();
 		return driver;
 	}
 

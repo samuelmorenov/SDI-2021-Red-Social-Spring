@@ -4,7 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
@@ -26,12 +25,6 @@ import com.uniovi.tests.ejercicios.*;
 })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MySocialNetwork_Tests {
-
-	// Antes de la primera prueba
-	@BeforeClass
-	static public void begin() {
-		DriverSingleton.setDriver();
-	}
 
 	// Al finalizar la última prueba
 	@AfterClass
