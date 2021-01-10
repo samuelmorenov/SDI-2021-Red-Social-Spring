@@ -70,10 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()
 			.defaultSuccessUrl("/home")
 			.and()
-//TODO: Exception Handling
-//		.exceptionHandling()
-//			.accessDeniedPage("/403")
-//			.and()
 		.logout()
 			.permitAll();
 	}

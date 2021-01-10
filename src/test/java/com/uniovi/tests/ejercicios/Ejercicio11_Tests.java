@@ -46,9 +46,7 @@ public class Ejercicio11_Tests extends BaseTests {
 		PO_HomeView.clickOption("login", "class", "btn btn-primary");
 		PO_LoginView.fillForm(UserList.usuarios(0).email, UserList.usuarios(0).password);
 		driver.navigate().to(URL + "/user/add");
-		SeleniumUtils.textoPresentePagina("HTTP Status 403 – Forbidden");
-		//TODO: Check forbidden.message
-		//PO_View.checkKey("forbidden.message", PO_Properties.getSPANISH());
+		SeleniumUtils.textoPresentePagina("HTTP Status 403");
 		PO_View.checkNoKey("add.title", PO_Properties.getSPANISH());
 	}
 }
